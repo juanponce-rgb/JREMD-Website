@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="JREMD Technologies, Inc. – Premium Security, Solar Energy, and Communication Solutions for homes and businesses across the Philippines. Cubao, Quezon City.">
+  <title>JREMD Technologies, Inc. | Security · Solar · Communication — Philippines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #052566 45%, #0a6fa8 100%);
+      min-height: calc(60vh - 96px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-dots-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -120px;
+      right: -60px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 180, 216, .18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(144, 224, 239, .08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hslides {
+      flex: 1;
+      position: relative;
+    }
+
+    .hslide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity .8s var(--ease);
+    }
+
+    .hslide.act {
+      opacity: 1;
+      position: relative;
+    }
+
+    .scnt {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 80px 0 90px;
+    }
+
+    .sinn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .stxt {
+      max-width: 560px;
+    }
+
+    .seb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .sebl {
+      width: 28px;
+      height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+
+    .seb span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ice);
+    }
+
+    .hero-h1 {
+      font-family: var(--fd);
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 800;
+      line-height: .93;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 22px;
+    }
+
+    .hero-h1 .hl {
+      color: var(--amber);
+    }
+
+    .sdesc {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 440px;
+    }
+
+    .sctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .svis {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .vf {
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4/3;
+      border: 1px solid rgba(255, 255, 255, .12);
+      overflow: hidden;
+      background: rgba(255, 255, 255, .05);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .vf svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Hero slide dots */
+    .hdots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 0 24px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hdot {
+      width: 28px;
+      height: 3px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, .25);
+      border: none;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .hdot.act {
+      background: var(--amber);
+      width: 48px;
+    }
+
+    /* Stats strip */
+    .hstrip {
+      background: var(--white);
+      border-top: 3px solid var(--ocean);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0, 119, 182, .10), 0 2px 6px rgba(0, 119, 182, .06);
+      position: relative;
+      z-index: 2;
+    }
+
+    .srow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .scell {
+      padding: 24px 28px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .scell:last-child {
+      border-right: none;
+    }
+
+    .sico {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .snum {
+      font-family: var(--fd);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--ocean);
+      line-height: 1;
+      display: block;
+    }
+
+    .slbl {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 2px;
+      display: block;
+      font-weight: 500;
+    }
+
+    /* SERVICES GRID */
+    .svc-section {
+      background: var(--white);
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .svc-tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all .22s var(--ease);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .svc-tile:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .svc-tile:hover .st-ico-wrap {
+      background: var(--ocean);
+    }
+
+    .svc-tile:hover .st-ico-wrap img {
+      filter: brightness(0) invert(1);
+    }
+
+    .st-ico-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      transition: background .22s;
+    }
+
+    .st-ico-wrap img {
+      transition: filter .22s;
+    }
+
+    .st-name {
+      font-family: var(--fd);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .st-desc {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .st-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .st-arrow {
+      font-size: 12px;
+      color: var(--ocean);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap .2s;
+    }
+
+    .svc-tile:hover .st-arrow {
+      gap: 8px;
+    }
+
+    /* SOLAR BAND */
+    .solar-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .sol-l {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--ocean) 100%);
+      padding: 72px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sol-l::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 180, 216, .2) 0%, transparent 70%);
+    }
+
+    .sol-l::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(144, 224, 239, .12) 0%, transparent 70%);
+    }
+
+    .sol-eyb {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ice);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .sol-title {
+      font-family: var(--fd);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 800;
+      line-height: .92;
+      color: var(--white);
+      letter-spacing: -1.5px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sol-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ss-cell {
+      background: rgba(255, 255, 255, .1);
+      padding: 20px 22px;
+      backdrop-filter: blur(4px);
+    }
+
+    .ss-num {
+      font-family: var(--fd);
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--amber);
+      display: block;
+      line-height: 1;
+    }
+
+    .ss-lbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .6);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .sol-ctas {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sol-r {
+      background: var(--frost);
+      padding: 72px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .sol-r h3 {
+      font-family: var(--fd);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .sol-point {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all .2s;
+    }
+
+    .sol-point:hover {
+      border-color: var(--sky);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sol-point-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .sol-point-text strong {
+      font-size: 14px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 3px;
+      color: var(--navy);
+    }
+
+    .sol-point-text span {
+      font-size: 12px;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    /* CLIENTS STRIP */
+    .clients-section {
+      background: var(--gray-50);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .clients-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .cli-tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      transition: all .2s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cli-tile:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .cli-logo {
+      width: 100%;
+      height: 80px;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+
+    .cli-logo-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-family: var(--fd);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ocean);
+      background: var(--frost);
+      transition: all .2s;
+    }
+
+    .cli-tile:hover .cli-logo-placeholder {
+      background: var(--ocean);
+      color: var(--white);
+      border-color: var(--ocean);
+    }
+
+    .cli-name {
+      font-family: var(--fd);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .cli-type {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    /* WHY JREMD */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .why-cell {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: all .22s var(--ease);
+    }
+
+    .why-cell:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .why-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      transition: background .22s;
+    }
+
+    .why-cell:hover .why-icon-wrap {
+      background: var(--ocean);
+    }
+
+    .why-cell:hover .why-icon-wrap img {
+      filter: brightness(0) invert(1);
+    }
+
+    .why-cell h4 {
+      font-family: var(--fd);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .why-cell p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* BRANDS */
+    #brands {
+      border-top: 1px solid var(--border);
+      background: var(--frost);
+      overflow: hidden;
+    }
+
+    .bri {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .brlc {
+      padding: 28px 32px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brlc span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .brlc strong {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .brscr {
+      overflow: hidden;
+      padding: 24px 0;
+    }
+
+    @media(max-width:1200px) {
+      .svc-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:1024px) {
+      .solar-band {
+        grid-template-columns: 1fr;
+      }
+
+      .srow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .clients-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bri {
+        grid-template-columns: 1fr;
+      }
+
+      .brlc {
+        display: none;
+      }
+    }
+
+    @media(max-width:900px) {
+      .sinn {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .svis {
+        justify-content: flex-start;
+      }
+
+      .sol-l,
+      .sol-r {
+        padding: 48px 28px;
+      }
+    }
+
+    @media(max-width:600px) {
+      .svc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .clients-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body id="page-header">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-dots-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hslides">
+      <!-- Slide 1: Security -->
+      <div class="hslide act" id="s0">
+        <div class="scnt">
+          <div class="container">
+            <div class="sinn">
+              <div class="stxt rev">
+                <div class="seb">
+                  <div class="sebl"></div><span>Digital Watch</span>
+                </div>
+                <h1 class="hero-h1">Guard<br>Every<br><span class="hl">Angle.</span></h1>
+                <p class="sdesc">Enterprise-grade CCTV, fire detection, and biometrics — professionally installed and
+                  fully supported.</p>
+
+              </div>
+              <div class="svis rev">
+                <div class="vf">
+                  <svg viewBox="0 0 520 390" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="520" height="390" fill="rgba(3,4,94,0.3)" />
+                    <defs>
+                      <pattern id="gp" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(144,224,239,0.1)" stroke-width="1" />
+                      </pattern>
+                    </defs>
+                    <rect width="520" height="390" fill="url(#gp)" />
+                    <g transform="translate(95,90)">
+                      <rect x="0" y="20" width="125" height="58" rx="29" fill="rgba(0,119,182,0.3)" stroke="#00B4D8"
+                        stroke-width="2" />
+                      <rect x="116" y="30" width="68" height="38" rx="4" fill="rgba(0,119,182,0.3)" stroke="#00B4D8"
+                        stroke-width="1.5" />
+                      <circle cx="158" cy="49" r="16" fill="rgba(3,4,94,0.6)" stroke="#90E0EF" stroke-width="1.5" />
+                      <circle cx="158" cy="49" r="9" fill="rgba(0,180,216,0.3)" stroke="#00B4D8" stroke-width="1" />
+                      <circle cx="158" cy="49" r="4" fill="#00B4D8" />
+                      <rect x="-18" y="39" width="22" height="12" rx="6" fill="#FFB703" />
+                      <rect x="57" y="-20" width="10" height="24" rx="2" fill="#FFB703" />
+                      <circle cx="62" cy="-20" r="8" fill="rgba(0,119,182,0.4)" stroke="#90E0EF" stroke-width="1.5" />
+                    </g>
+                    <path d="M285 138L490 50L510 285Z" fill="rgba(0,180,216,0.06)" stroke="rgba(0,180,216,0.2)"
+                      stroke-width="1" stroke-dasharray="6,6" />
+                    <line x1="285" y1="138" x2="505" y2="138" stroke="rgba(144,224,239,0.4)" stroke-width="1.5">
+                      <animateTransform attributeName="transform" type="rotate" from="-12 285 138" to="12 285 138"
+                        dur="2.5s" repeatCount="indefinite" additive="sum" />
+                    </line>
+                    <rect x="330" y="55" width="115" height="68" rx="6" fill="rgba(3,4,94,0.7)"
+                      stroke="rgba(0,180,216,0.4)" stroke-width="1" />
+                    <text x="342" y="79" font-size="8" fill="#90E0EF" font-family="monospace">LIVE FEED</text>
+                    <text x="342" y="95" font-size="7" fill="#60A5FA" font-family="monospace">CAM-01 · 4K HD</text>
+                    <rect x="342" y="103" width="64" height="3" rx="2" fill="rgba(0,180,216,0.2)" />
+                    <rect x="342" y="103" width="48" height="3" rx="2" fill="#00B4D8" opacity=".8" />
+                    <g stroke="#90E0EF" stroke-width="1.5" opacity=".4">
+                      <path d="M22 22L22 40M22 22L40 22" />
+                      <path d="M498 22L480 22M498 22L498 40" />
+                      <path d="M22 368L22 350M22 368L40 368" />
+                      <path d="M498 368L480 368M498 368L498 350" />
+                    </g>
+                    <circle cx="32" cy="360" r="4" fill="#22c55e">
+                      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
+                    <text x="44" y="364" font-size="9" fill="rgba(144,224,239,0.6)" font-family="monospace">ARMED ·
+                      24/7</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2: Solar -->
+      <div class="hslide" id="s1">
+        <div class="scnt">
+          <div class="container">
+            <div class="sinn">
+              <div class="stxt rev">
+                <div class="seb">
+                  <div class="sebl"></div><span>Solar Energy</span>
+                </div>
+                <h1 class="hero-h1">Sustainable<br>Clean<br><span class="hl">Energy.</span></h1>
+                <p class="sdesc">High-efficiency solar systems that cut electricity bills by up to 80% and pay for
+                  themselves in 5–7 years.</p>
+
+              </div>
+              <div class="svis rev">
+                <div class="vf">
+                  <svg viewBox="0 0 520 390" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="520" height="390" fill="rgba(3,4,94,0.3)" />
+                    <defs>
+                      <pattern id="gp2" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,183,3,0.08)" stroke-width="1" />
+                      </pattern>
+                      <radialGradient id="sg">
+                        <stop offset="0%" stop-color="rgba(255,183,3,0.35)" />
+                        <stop offset="100%" stop-color="rgba(255,183,3,0)" />
+                      </radialGradient>
+                    </defs>
+                    <rect width="520" height="390" fill="url(#gp2)" />
+                    <circle cx="400" cy="88" r="70" fill="url(#sg)" />
+                    <circle cx="400" cy="88" r="38" fill="rgba(255,183,3,0.2)" stroke="rgba(255,183,3,0.5)"
+                      stroke-width="1" />
+                    <circle cx="400" cy="88" r="20" fill="rgba(255,183,3,0.6)" />
+                    <circle cx="400" cy="88" r="10" fill="#FFB703" />
+                    <g stroke="#FFB703" stroke-width="1.5" opacity=".5">
+                      <line x1="400" y1="42" x2="400" y2="34" />
+                      <line x1="400" y1="134" x2="400" y2="142" />
+                      <line x1="354" y1="88" x2="346" y2="88" />
+                      <line x1="446" y1="88" x2="454" y2="88" />
+                    </g>
+                    <g transform="translate(20,158)">
+                      <g transform="rotate(-6,230,100)">
+                        <rect x="0" y="0" width="88" height="52" rx="2" fill="rgba(0,119,182,0.3)" stroke="#00B4D8"
+                          stroke-width="1.5" />
+                        <line x1="0" y1="17" x2="88" y2="17" stroke="#90E0EF" stroke-width=".5" />
+                        <line x1="0" y1="34" x2="88" y2="34" stroke="#90E0EF" stroke-width=".5" />
+                        <line x1="29" y1="0" x2="29" y2="52" stroke="#90E0EF" stroke-width=".5" />
+                        <line x1="58" y1="0" x2="58" y2="52" stroke="#90E0EF" stroke-width=".5" />
+                        <rect x="0" y="0" width="88" height="52" rx="2" fill="none" stroke="#FFB703" stroke-width="1"
+                          opacity=".6" />
+                        <rect x="96" y="0" width="88" height="52" rx="2" fill="rgba(0,119,182,0.3)" stroke="#00B4D8"
+                          stroke-width="1.5" />
+                        <rect x="96" y="0" width="88" height="52" rx="2" fill="none" stroke="#FFB703" stroke-width="1"
+                          opacity=".5" />
+                        <rect x="192" y="0" width="88" height="52" rx="2" fill="rgba(0,119,182,0.3)" stroke="#00B4D8"
+                          stroke-width="1.5" />
+                        <rect x="192" y="0" width="88" height="52" rx="2" fill="none" stroke="#FFB703" stroke-width="1"
+                          opacity=".4" />
+                        <rect x="0" y="60" width="88" height="52" rx="2" fill="rgba(0,119,182,0.2)" stroke="#00B4D8"
+                          stroke-width="1" opacity=".8" />
+                        <rect x="96" y="60" width="88" height="52" rx="2" fill="rgba(0,119,182,0.2)" stroke="#00B4D8"
+                          stroke-width="1" opacity=".8" />
+                        <rect x="192" y="60" width="88" height="52" rx="2" fill="rgba(0,119,182,0.2)" stroke="#00B4D8"
+                          stroke-width="1" opacity=".7" />
+                      </g>
+                    </g>
+                    <circle r="3" fill="#FFB703">
+                      <animateMotion dur="3s" repeatCount="indefinite" path="M400,88 L250,210" />
+                    </circle>
+                    <circle r="2" fill="#FFB703" opacity=".6">
+                      <animateMotion dur="3.8s" repeatCount="indefinite" path="M400,88 L140,210" />
+                    </circle>
+                    <rect x="365" y="258" width="132" height="78" rx="6" fill="rgba(3,4,94,0.8)"
+                      stroke="rgba(255,183,3,0.5)" stroke-width="1" />
+                    <text x="378" y="281" font-size="9" fill="#FFB703" font-family="monospace">OUTPUT NOW</text>
+                    <text x="378" y="310" font-size="26" fill="#FFB703" font-family="monospace"
+                      font-weight="bold">5.2kW</text>
+                    <text x="378" y="328" font-size="8" fill="rgba(144,224,239,0.6)"
+                      font-family="monospace">GENERATING</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3: Communication -->
+      <div class="hslide" id="s2">
+        <div class="scnt">
+          <div class="container">
+            <div class="sinn">
+              <div class="stxt rev">
+                <div class="seb">
+                  <div class="sebl"></div><span>Communication & Tech</span>
+                </div>
+                <h1 class="hero-h1">Connect<br>Every<br><span class="hl">Node.</span></h1>
+                <p class="sdesc">PABX, LAN cabling, structured networking, and AV integration — enterprise
+                  infrastructure built for reliability.</p>
+
+              </div>
+              <div class="svis rev">
+                <div class="vf">
+                  <svg viewBox="0 0 520 390" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="520" height="390" fill="rgba(3,4,94,0.35)" />
+                    <defs>
+                      <pattern id="gp3" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(0,180,216,0.1)" stroke-width="1" />
+                      </pattern>
+                    </defs>
+                    <rect width="520" height="390" fill="url(#gp3)" />
+                    <circle cx="260" cy="195" r="30" fill="rgba(0,119,182,0.4)" stroke="#00B4D8" stroke-width="2" />
+                    <circle cx="260" cy="195" r="18" fill="rgba(0,180,216,0.15)" stroke="rgba(0,180,216,0.5)"
+                      stroke-width="1" />
+                    <text x="260" y="200" font-size="10" fill="#90E0EF" text-anchor="middle" font-weight="bold"
+                      font-family="monospace">PABX</text>
+                    <circle cx="260" cy="195" r="46" fill="none" stroke="rgba(0,180,216,0.2)" stroke-width="1">
+                      <animate attributeName="r" values="30;52;30" dur="3s" repeatCount="indefinite" />
+                      <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <g stroke="rgba(0,180,216,0.4)" stroke-width="1.5" stroke-dasharray="5,4">
+                      <line x1="238" y1="174" x2="112" y2="98" />
+                      <line x1="282" y1="174" x2="408" y2="98" />
+                      <line x1="230" y1="195" x2="92" y2="195" />
+                      <line x1="290" y1="195" x2="428" y2="195" />
+                      <line x1="238" y1="216" x2="112" y2="296" />
+                      <line x1="282" y1="216" x2="408" y2="296" />
+                    </g>
+                    <g fill="rgba(0,119,182,0.4)" stroke="#00B4D8" stroke-width="1.5">
+                      <circle cx="92" cy="86" r="22" />
+                      <circle cx="428" cy="86" r="22" />
+                      <circle cx="70" cy="195" r="22" />
+                      <circle cx="450" cy="195" r="22" />
+                      <circle cx="92" cy="308" r="22" />
+                      <circle cx="428" cy="308" r="22" />
+                    </g>
+                    <g font-size="8" fill="#90E0EF" text-anchor="middle" font-family="monospace">
+                      <text x="92" y="90">LAN</text><text x="428" y="90">CCTV</text>
+                      <text x="70" y="199">VoIP</text><text x="450" y="199" font-size="7">SERVER</text>
+                      <text x="92" y="312">A/V</text><text x="428" y="312">FIRE</text>
+                    </g>
+                    <circle r="3" fill="#FFB703">
+                      <animateMotion dur="2s" repeatCount="indefinite" path="M260,195 L92,86" />
+                    </circle>
+                    <circle r="3" fill="#00B4D8" opacity=".8">
+                      <animateMotion dur="2.5s" repeatCount="indefinite" path="M260,195 L450,195" />
+                    </circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 4: Biometrics -->
+<div class="hslide" id="s3">
+  <div class="scnt">
+    <div class="container">
+      <div class="sinn">
+        <div class="stxt rev">
+          <div class="seb">
+            <div class="sebl"></div><span>Biometric Security</span>
+          </div>
+          <h1 class="hero-h1">Verify<br>Every<br><span class="hl">Identity.</span></h1>
+          <p class="sdesc">Multi-modal biometric access control — fingerprint, iris, and facial recognition with 99.9% accuracy in under 0.5 seconds.</p>
+        </div>
+        <div class="svis rev">
+          <div class="vf">
+            <svg viewBox="0 0 520 390" xmlns="http://www.w3.org/2000/svg">
+              <rect width="520" height="390" fill="rgba(3,4,94,0.3)" />
+              <defs>
+                <pattern id="gp4" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(0,180,216,0.09)" stroke-width="1" />
+                </pattern>
+                <radialGradient id="fpglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(0,180,216,0.25)" />
+                  <stop offset="100%" stop-color="rgba(0,180,216,0)" />
+                </radialGradient>
+                <clipPath id="fpclip">
+                  <rect x="120" y="60" width="180" height="220" rx="16" />
+                </clipPath>
+              </defs>
+              <rect width="520" height="390" fill="url(#gp4)" />
+
+              <!-- Fingerprint glow -->
+              <circle cx="210" cy="172" r="110" fill="url(#fpglow)" />
+
+              <!-- Fingerprint arcs clipped to card -->
+              <g clip-path="url(#fpclip)" fill="none" stroke="#00B4D8" stroke-width="1.8">
+                <path d="M210,172 m0,-18 a18,18 0 1,1 0,36 a18,18 0 1,1 0,-36" opacity=".9"/>
+                <path d="M210,172 m0,-34 a34,34 0 1,1 0,68 a34,34 0 1,1 0,-68" opacity=".75"/>
+                <path d="M210,172 m0,-50 a50,50 0 1,1 0,100 a50,50 0 1,1 0,-100" opacity=".6"/>
+                <path d="M210,172 m0,-66 a66,66 0 1,1 0,132 a66,66 0 1,1 0,-132" opacity=".45"/>
+                <path d="M210,172 m0,-82 a82,82 0 1,1 0,164 a82,82 0 1,1 0,-164" opacity=".3"/>
+                <path d="M210,172 m0,-98 a98,98 0 1,1 0,196 a98,98 0 1,1 0,-196" opacity=".18"/>
+              </g>
+
+              <!-- Card border -->
+              <rect x="120" y="60" width="180" height="220" rx="16"
+                fill="rgba(3,4,94,0.15)" stroke="#00B4D8" stroke-width="1.5" stroke-opacity=".6"/>
+
+              <!-- Corner scan brackets -->
+              <g stroke="#FFB703" stroke-width="2.2" fill="none" stroke-linecap="round">
+                <path d="M130,70 L130,85 M130,70 L145,70" />
+                <path d="M290,70 L275,70 M290,70 L290,85" />
+                <path d="M130,270 L130,255 M130,270 L145,270" />
+                <path d="M290,270 L275,270 M290,270 L290,255" />
+              </g>
+
+              <!-- Animated scan line -->
+              <line x1="124" y1="172" x2="296" y2="172" stroke="#00D4FF" stroke-width="1.5" opacity=".85">
+                <animate attributeName="y1" values="75;265;75" dur="2.8s" repeatCount="indefinite" />
+                <animate attributeName="y2" values="75;265;75" dur="2.8s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.8s" repeatCount="indefinite" />
+              </line>
+              <rect x="124" y="165" width="172" height="14" fill="rgba(0,212,255,0.06)" rx="2">
+                <animate attributeName="y" values="68;258;68" dur="2.8s" repeatCount="indefinite" />
+              </rect>
+
+              <!-- Centre dot -->
+              <circle cx="210" cy="172" r="5" fill="#FFB703" opacity=".9">
+                <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.4s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Status badge -->
+              <rect x="148" y="292" width="124" height="22" rx="5"
+                fill="rgba(3,4,94,0.85)" stroke="rgba(0,180,216,0.45)" stroke-width="1"/>
+              <circle cx="163" cy="303" r="4" fill="#00D4FF">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite" />
+              </circle>
+              <text x="172" y="307" font-size="8" fill="#90E0EF" font-family="monospace">SCANNING...</text>
+
+              <!-- Stat panel -->
+              <rect x="335" y="60" width="155" height="190" rx="8"
+                fill="rgba(3,4,94,0.75)" stroke="rgba(0,180,216,0.35)" stroke-width="1"/>
+              <text x="352" y="85" font-size="8" fill="#FFB703" font-family="monospace" letter-spacing="1">SYSTEM STATUS</text>
+              <line x1="349" y1="92" x2="476" y2="92" stroke="rgba(0,180,216,0.25)" stroke-width=".8"/>
+              <text x="352" y="112" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">ACCURACY</text>
+              <text x="352" y="128" font-size="20" fill="#FFB703" font-family="monospace" font-weight="bold">99.9%</text>
+              <text x="352" y="152" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">RESPONSE</text>
+              <text x="352" y="168" font-size="20" fill="#90E0EF" font-family="monospace" font-weight="bold">0.5s</text>
+              <text x="352" y="192" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">ENROLLED</text>
+              <text x="352" y="208" font-size="15" fill="#90E0EF" font-family="monospace" font-weight="bold">12,450</text>
+              <line x1="349" y1="220" x2="476" y2="220" stroke="rgba(0,180,216,0.2)" stroke-width=".8"/>
+              <circle cx="360" cy="232" r="4" fill="#22c55e">
+                <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite" />
+              </circle>
+              <text x="370" y="236" font-size="7.5" fill="rgba(144,224,239,0.7)" font-family="monospace">ONLINE · SECURE</text>
+
+              <!-- Data pulse dots -->
+              <circle r="2.5" fill="#FFB703" opacity=".8">
+                <animateMotion dur="2.2s" repeatCount="indefinite" path="M210,172 L412,150" />
+              </circle>
+              <circle r="2" fill="#00B4D8" opacity=".65">
+                <animateMotion dur="3.1s" repeatCount="indefinite" path="M210,172 L412,195" />
+              </circle>
+
+              <!-- Mode icons panel -->
+              <rect x="335" y="272" width="155" height="42" rx="8"
+                fill="rgba(3,4,94,0.75)" stroke="rgba(255,183,3,0.3)" stroke-width="1"/>
+              <text x="352" y="290" font-size="7" fill="rgba(144,224,239,0.55)" font-family="monospace">MODES ACTIVE</text>
+              <g fill="none" stroke="#00B4D8" stroke-width="1.3" opacity=".8">
+                <circle cx="363" cy="304" r="6"/>
+                <path d="M358,304 a5,5 0 0,1 10,0" stroke-width="1.2"/>
+                <ellipse cx="388" cy="304" rx="7" ry="4.5"/>
+                <circle cx="388" cy="304" r="2.5" fill="rgba(0,180,216,0.3)" stroke="#00B4D8"/>
+                <rect x="408" y="298" width="14" height="12" rx="3"/>
+                <line x1="411" y1="304" x2="413" y2="304" stroke-width="1"/>
+                <line x1="417" y1="304" x2="419" y2="304" stroke-width="1"/>
+                <path d="M412,308 a3,2 0 0,0 6,0" stroke-width="1"/>
+              </g>
+              <text x="436" y="308" font-size="7" fill="rgba(144,224,239,0.55)" font-family="monospace">+3 MORE</text>
+
+              <!-- Outer frame brackets -->
+              <g stroke="#90E0EF" stroke-width="1.2" opacity=".3">
+                <path d="M22 22L22 40M22 22L40 22" />
+                <path d="M498 22L480 22M498 22L498 40" />
+                <path d="M22 368L22 350M22 368L40 368" />
+                <path d="M498 368L480 368M498 368L498 350" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5: Fire Detection & Alarm -->
+<div class="hslide" id="s4">
+  <div class="scnt">
+    <div class="container">
+      <div class="sinn">
+        <div class="stxt rev">
+          <div class="seb">
+            <div class="sebl"></div><span>Fire Detection & Alarm</span>
+          </div>
+          <h1 class="hero-h1">Detect<br>Before<br><span class="hl">Danger.</span></h1>
+          <p class="sdesc">Intelligent multi-sensor fire detection and alarm systems — triggering full-zone alerts in under 3 seconds, 24/7.</p>
+        </div>
+        <div class="svis rev">
+          <div class="vf">
+            <svg viewBox="0 0 520 390" xmlns="http://www.w3.org/2000/svg">
+              <rect width="520" height="390" fill="rgba(3,4,94,0.3)" />
+              <defs>
+                <pattern id="gp5" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,100,0,0.07)" stroke-width="1" />
+                </pattern>
+                <radialGradient id="fireglow" cx="50%" cy="75%" r="60%">
+                  <stop offset="0%" stop-color="rgba(255,100,0,0.3)" />
+                  <stop offset="100%" stop-color="rgba(255,100,0,0)" />
+                </radialGradient>
+                <radialGradient id="flamerad" cx="50%" cy="80%" r="55%">
+                  <stop offset="0%" stop-color="#FF6B00" />
+                  <stop offset="60%" stop-color="#FF4500" />
+                  <stop offset="100%" stop-color="#CC2200" stop-opacity="0.7"/>
+                </radialGradient>
+              </defs>
+              <rect width="520" height="390" fill="url(#gp5)" />
+
+              <!-- Ambient glow -->
+              <ellipse cx="210" cy="295" rx="105" ry="55" fill="url(#fireglow)" />
+
+              <!-- Pulse rings -->
+              <circle cx="210" cy="210" r="115" fill="none" stroke="rgba(255,100,0,0.15)" stroke-width="1.5" stroke-dasharray="8,6">
+                <animate attributeName="r" values="100;125;100" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="210" cy="210" r="90" fill="none" stroke="rgba(255,100,0,0.2)" stroke-width="1" stroke-dasharray="4,8">
+                <animate attributeName="r" values="80;102;80" dur="2.6s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.6;0.15;0.6" dur="2.6s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Flame outer -->
+              <path d="M210,120 C235,115 265,140 258,175 C275,150 280,180 265,205 C278,185 275,215 255,230 C268,210 260,245 235,255 C248,232 235,262 210,268 C185,262 172,232 185,255 C160,245 152,210 165,230 C145,215 142,185 155,205 C140,180 145,150 162,175 C155,140 185,115 210,120Z"
+                fill="url(#flamerad)" opacity="0.9">
+                <animateTransform attributeName="transform" type="scale" values="1,1;1.03,1.02;0.98,1.01;1,1"
+                  dur="0.9s" repeatCount="indefinite" additive="sum"
+                  calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" origin="210 210"/>
+              </path>
+              <!-- Flame mid -->
+              <path d="M210,148 C226,144 245,162 240,186 C252,168 256,190 245,208 C254,194 251,216 238,225 C246,210 240,232 222,239 C230,224 222,243 210,246 C198,243 190,224 198,239 C180,232 174,210 182,225 C169,216 166,194 175,208 C164,190 168,168 180,186 C175,162 194,144 210,148Z"
+                fill="#FF8C00" opacity="0.9">
+                <animateTransform attributeName="transform" type="scale" values="1,1;1.04,1.03;0.97,1.02;1,1"
+                  dur="0.75s" repeatCount="indefinite" additive="sum"
+                  calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" origin="210 200"/>
+              </path>
+              <!-- Flame core -->
+              <path d="M210,175 C220,172 230,182 227,196 C233,186 236,198 229,210 C234,202 232,214 224,220 C228,213 225,223 215,226 C218,219 215,227 210,228 C205,227 202,219 205,226 C195,223 192,213 196,220 C188,214 186,202 191,210 C184,198 187,186 193,196 C190,182 200,172 210,175Z"
+                fill="#FFD000" opacity="0.95">
+                <animateTransform attributeName="transform" type="scale" values="1,1;1.05,1.04;0.96,1.02;1,1"
+                  dur="0.6s" repeatCount="indefinite" additive="sum"
+                  calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1" origin="210 200"/>
+              </path>
+              <!-- Bright core -->
+              <ellipse cx="210" cy="210" rx="10" ry="14" fill="rgba(255,250,180,0.9)" />
+
+              <!-- Smoke -->
+              <circle cx="200" cy="105" r="12" fill="rgba(180,180,190,0.12)">
+                <animate attributeName="cy" values="105;80;55" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="r" values="10;15;20" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.15;0.08;0" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="218" cy="92" r="9" fill="rgba(180,180,190,0.1)">
+                <animate attributeName="cy" values="92;68;44" dur="3.6s" repeatCount="indefinite" />
+                <animate attributeName="r" values="8;13;18" dur="3.6s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.12;0.06;0" dur="3.6s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Detector device -->
+              <circle cx="210" cy="44" r="22" fill="rgba(3,4,94,0.7)" stroke="rgba(0,180,216,0.5)" stroke-width="1.5"/>
+              <circle cx="210" cy="44" r="14" fill="rgba(0,119,182,0.3)" stroke="#00B4D8" stroke-width="1"/>
+              <circle cx="210" cy="44" r="5" fill="#00B4D8" opacity=".8"/>
+              <g fill="#90E0EF" opacity=".5">
+                <circle cx="196" cy="36" r="1.5"/><circle cx="224" cy="36" r="1.5"/>
+                <circle cx="196" cy="52" r="1.5"/><circle cx="224" cy="52" r="1.5"/>
+              </g>
+              <!-- Signal waves -->
+              <g fill="none" stroke="#FFB703" stroke-linecap="round">
+                <path d="M194,28 Q210,18 226,28" stroke-width="1.8" opacity=".7">
+                  <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.2s" repeatCount="indefinite" />
+                </path>
+                <path d="M186,20 Q210,6 234,20" stroke-width="1.5" opacity=".5">
+                  <animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.2s" begin="0.3s" repeatCount="indefinite" />
+                </path>
+                <path d="M178,12 Q210,-5 242,12" stroke-width="1.2" opacity=".3">
+                  <animate attributeName="opacity" values="0.3;0.05;0.3" dur="1.2s" begin="0.6s" repeatCount="indefinite" />
+                </path>
+              </g>
+
+              <!-- Alarm status panel -->
+              <rect x="340" y="55" width="155" height="210" rx="8"
+                fill="rgba(3,4,94,0.78)" stroke="rgba(255,100,0,0.4)" stroke-width="1"/>
+              <text x="357" y="80" font-size="8" fill="#FF6B00" font-family="monospace" letter-spacing="1">ALARM STATUS</text>
+              <line x1="353" y1="87" x2="480" y2="87" stroke="rgba(255,100,0,0.25)" stroke-width=".8"/>
+              <circle cx="363" cy="105" r="6" fill="rgba(255,100,0,0.2)" stroke="#FF4500" stroke-width="1.5">
+                <animate attributeName="opacity" values="1;0.4;1" dur="0.8s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="363" cy="105" r="3" fill="#FF4500">
+                <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite" />
+              </circle>
+              <text x="375" y="109" font-size="8" fill="#FF6B00" font-family="monospace">ALERT ACTIVE</text>
+              <text x="357" y="135" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">RESPONSE TIME</text>
+              <text x="357" y="155" font-size="22" fill="#FFB703" font-family="monospace" font-weight="bold">&lt; 3 sec</text>
+              <text x="357" y="178" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">COVERAGE</text>
+              <text x="357" y="196" font-size="18" fill="#90E0EF" font-family="monospace" font-weight="bold">Full Zone</text>
+              <text x="357" y="220" font-size="7" fill="rgba(144,224,239,0.6)" font-family="monospace">SENSORS ONLINE</text>
+              <text x="357" y="238" font-size="18" fill="#90E0EF" font-family="monospace" font-weight="bold">48 / 48</text>
+              <line x1="353" y1="248" x2="480" y2="248" stroke="rgba(255,100,0,0.2)" stroke-width=".8"/>
+              <circle cx="363" cy="260" r="4" fill="#22c55e">
+                <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <text x="373" y="264" font-size="7.5" fill="rgba(144,224,239,0.7)" font-family="monospace">MONITORING · 24/7</text>
+
+              <!-- Zone map panel -->
+              <rect x="340" y="285" width="155" height="80" rx="8"
+                fill="rgba(3,4,94,0.75)" stroke="rgba(255,100,0,0.3)" stroke-width="1"/>
+              <text x="357" y="303" font-size="7" fill="rgba(144,224,239,0.55)" font-family="monospace">ZONE MAP</text>
+              <g font-size="6" font-family="monospace" text-anchor="middle">
+                <rect x="352" y="308" width="28" height="16" rx="2" fill="rgba(255,100,0,0.25)" stroke="#FF4500" stroke-width=".8"/>
+                <text x="366" y="319" fill="#FF6B00">Z1 !</text>
+                <rect x="384" y="308" width="28" height="16" rx="2" fill="rgba(0,180,216,0.12)" stroke="#00B4D8" stroke-width=".8"/>
+                <text x="398" y="319" fill="#90E0EF">Z2 ✓</text>
+                <rect x="416" y="308" width="28" height="16" rx="2" fill="rgba(0,180,216,0.12)" stroke="#00B4D8" stroke-width=".8"/>
+                <text x="430" y="319" fill="#90E0EF">Z3 ✓</text>
+                <rect x="352" y="328" width="28" height="16" rx="2" fill="rgba(0,180,216,0.12)" stroke="#00B4D8" stroke-width=".8"/>
+                <text x="366" y="339" fill="#90E0EF">Z4 ✓</text>
+                <rect x="384" y="328" width="28" height="16" rx="2" fill="rgba(0,180,216,0.12)" stroke="#00B4D8" stroke-width=".8"/>
+                <text x="398" y="339" fill="#90E0EF">Z5 ✓</text>
+                <rect x="416" y="328" width="28" height="16" rx="2" fill="rgba(0,180,216,0.12)" stroke="#00B4D8" stroke-width=".8"/>
+                <text x="430" y="339" fill="#90E0EF">Z6 ✓</text>
+              </g>
+
+              <!-- Alert pulse from flame base -->
+              <circle cx="210" cy="290" r="5" fill="#FF4500" opacity=".8">
+                <animate attributeName="r" values="5;40;5" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.7;0;0.7" dur="2s" repeatCount="indefinite" />
+              </circle>
+
+              <!-- Data dots to panel -->
+              <circle r="2.5" fill="#FF6B00" opacity=".8">
+                <animateMotion dur="1.8s" repeatCount="indefinite" path="M210,210 L417,140" />
+              </circle>
+              <circle r="2" fill="#FFB703" opacity=".6">
+                <animateMotion dur="2.4s" repeatCount="indefinite" path="M210,210 L417,195" />
+              </circle>
+
+              <!-- Outer frame brackets -->
+              <g stroke="#90E0EF" stroke-width="1.2" opacity=".3">
+                <path d="M22 22L22 40M22 22L40 22" />
+                <path d="M498 22L480 22M498 22L498 40" />
+                <path d="M22 368L22 350M22 368L40 368" />
+                <path d="M498 368L480 368M498 368L498 350" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <div class="hdots">
+  <button class="hdot act" data-s="0"></button>
+  <button class="hdot" data-s="1"></button>
+  <button class="hdot" data-s="2"></button>
+  <button class="hdot" data-s="3"></button>
+  <button class="hdot" data-s="4"></button>
+</div>
+
+  </section>
+
+<!-- SERVICES -->
+  <section class="section svc-section">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px" class="rev">
+        <div>
+          <span class="eyb">Our Services</span>
+          <h2 class="dmd">Everything You Need.<br>One Company.</h2>
+        </div>
+        <a href="contact.html" class="btn-ghost">Get a Quote →</a>
+      </div>
+      <div class="svc-grid rev" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch">
+
+        <a href="services/cctv.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/camera.svg"
+              alt="CCTV" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">CCTV &<br>Surveillance</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">HD to 4K IP cameras. Remote viewing, night vision, and Hikvision & Dahua systems built for Philippine conditions.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">4K HD</span><span class="chip">Night Vision</span><span class="chip">PTZ</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="services/fire-alarm.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/flame.svg"
+              alt="Fire" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Fire Detection<br>& Alarm</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Addressable and conventional fire alarm systems. Smoke, heat, and gas detectors. Honeywell-certified.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">Addressable</span><span class="chip">Honeywell</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="services/biometrics.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/fingerprint.svg"
+              alt="Biometrics" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Biometrics &<br>Access Control</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Fingerprint, facial recognition, and RFID card systems. ZKTeco solutions for offices and facilities.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">Face ID</span><span class="chip">ZKTeco</span><span class="chip">RFID</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="services/solar.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/sun.svg"
+              alt="Solar" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Solar Energy<br>Systems</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">On-grid, off-grid, and hybrid solar. Trina Solar & Deye components. DOE-compliant installations.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">On-Grid</span><span class="chip">Hybrid</span><span class="chip">Trina</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="services/pabx.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/phone-call.svg"
+              alt="PABX" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">PABX & IP<br>Phone Systems</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Panasonic & Grandstream PABX. Scalable IP-PBX from 8 to 500+ extensions for any building.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">Panasonic</span><span class="chip">VoIP</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="services/lan.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/network.svg"
+              alt="LAN" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">LAN & Network<br>Cabling</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Structured cabling Cat6/Cat6A and fiber optic. Clean, certified, Fluke-tested installations.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">Cat6A</span><span class="chip">Fiber</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Explore <span>→</span></div>
+        </a>
+
+        <a href="contact.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/volume-2.svg"
+              alt="Audio" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Audio<br>Systems</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Background music, public address, and sound reinforcement systems for commercial and hospitality spaces.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">PA System</span><span class="chip">BGM</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Inquire Us <span>→</span></div>
+        </a>
+
+        <a href="contact.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/wrench.svg"
+              alt="Maintenance" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Preventive<br>Maintenance</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Ensure peak performance with our scheduled maintenance. We provide expert care for your existing electronic devices to optimize efficiency and reduce the frequency of technical problems.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">Annual</span><span class="chip">On-Call</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Inquire Us <span>→</span></div>
+        </a>
+
+        <a href="contact.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/car.svg"
+              alt="Parking" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Parking<br>System</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Automated parking barriers, ticketing, and RFID-based access management for commercial buildings and malls.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">RFID</span><span class="chip">Barrier Gate</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Inquire Us <span>→</span></div>
+        </a>
+
+        <a href="contact.html" class="svc-tile" style="display:flex;flex-direction:column;padding:28px 24px;gap:0">
+          <div class="st-ico-wrap" style="margin-bottom:16px"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/zap.svg"
+              alt="Electrical" width="26" height="26"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <div class="st-name" style="font-size:16px;font-weight:700;line-height:1.35;margin-bottom:10px;min-height:44px">Electrical Design<br>& Services</div>
+          <div class="st-desc" style="font-size:13px;line-height:1.65;color:var(--gray-500);margin-bottom:16px;flex:1">Licensed electrical engineering services — design, installation, and maintenance for commercial and residential projects.</div>
+          <div class="st-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"><span class="chip">PRC Licensed</span><span class="chip">Design & Build</span></div>
+          <div class="st-arrow" style="font-size:13px;font-weight:600;margin-top:auto">Inquire Us <span>→</span></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  <!-- BRANDS -->
+  <div id="brands">
+    <div class="bri">
+      <div class="brlc"><span>Official</span><strong>Partner Brands</strong></div>
+      <div class="brscr">
+        <div class="brands-track" id="brandsTrackHome"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <section class="section clients-section">
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px" class="rev">
+        <div>
+          <span class="eyb">Our Clients</span>
+          <h2 class="dmd">Trusted by Leading<br>Philippine Businesses</h2>
+        </div>
+        <a href="clients.html" class="btn-ghost">View All Clients →</a>
+      </div>
+      <div class="clients-strip rev">
+        <!-- Replace src with actual logo paths once uploaded, e.g.: src="images/clients/mamou.png" -->
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/goldilocks/goldilocks-icon.png" alt="Goldilocks"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Goldilocks</div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/vision-express/vision-express-icon.png" alt="Vision Express"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Vision Express</div>
+          <div class="cli-type">Retail</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/boudica-cafe-bar/boudica-cafe-bar-icon.png" alt="Boudica Cafe Bar"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="cli-name">Boudica Cafe Bar</div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/ramen-nagi/ramen-nagi-icon.png" alt="Ramen Nagi"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Ramen Nagi</div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/mamou/mamou-icon.png" alt="Mamou"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Mamou</div>
+          <div class="cli-type">Restaurant Chain</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/din-tai-fung/din-tai-fung-icon.png" alt="Din Tai Fung"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Din Tai Fung</div>
+          <div class="cli-type">Dining & Hospitality</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/maxs/maxs-icon.png" alt="Max’s"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Max’s</div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+        <div class="cli-tile">
+          <img class="cli-logo" src="images/clients/meycauayan-doctors-hospital/meycauayan-doctors-hospital-icon.png"
+            alt="Meycauayan Doctors Hospital"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+
+          <div class="cli-name">Meycauayan Doctors Hospital</div>
+          <div class="cli-type">Healthcare</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JREMD -->
+  <section class="section" style="background:var(--frost)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:52px" class="rev">
+        <span class="eyb">Why Choose JREMD</span>
+        <h2 class="dmd">The Difference<br>Is in the Details.</h2>
+      </div>
+      <div class="why-grid rev">
+        <div class="why-cell">
+          <div class="why-icon-wrap"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/wrench.svg"
+              alt="Engineers" width="22" height="22"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <h4>In-House Engineers</h4>
+          <p>No outsourcing. Our certified team handles every project from initial survey to final handover — full
+            accountability.</p>
+        </div>
+        <div class="why-cell">
+          <div class="why-icon-wrap"><img
+              src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/clipboard-list.svg" alt="Service" width="22"
+              height="22" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <h4>End-to-End Service</h4>
+          <p>Site survey → design → installation → testing → after-sales maintenance. Everything under one roof.</p>
+        </div>
+        <div class="why-cell">
+          <div class="why-icon-wrap"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/zap.svg"
+              alt="Fast" width="22" height="22"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <h4>Fast Response Time</h4>
+          <p>Critical system issues get same-day or next-day service response across all of Metro Manila.</p>
+        </div>
+        <div class="why-cell">
+          <div class="why-icon-wrap"><img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/award.svg"
+              alt="Brands" width="22" height="22"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);"></div>
+          <h4>Tier-1 Brands Only</h4>
+          <p>We deploy proven brands with full manufacturer warranties and dedicated local technical support.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center;margin-top:48px;flex-wrap:wrap" class="rev">
+        <a href="about.html" class="btn btn-primary">About JREMD</a>
+        <a href="works.html" class="btn btn-outline">View Our Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Ready to Get Started?</h2>
+        <p>Professional on-site assessment and customized solution plan.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-amber btn-lg">Get in Touch</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg">Book Inspection</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    let cur = 0;
+    const slides = document.querySelectorAll('.hslide');
+    const dots = document.querySelectorAll('.hdot');
+    let tmr;
+    function goTo(n) { slides[cur].classList.remove('act'); dots[cur].classList.remove('act'); cur = n; slides[cur].classList.add('act'); dots[cur].classList.add('act'); }
+    dots.forEach(d => d.addEventListener('click', () => { clearInterval(tmr); goTo(parseInt(d.dataset.s)); tmr = setInterval(() => goTo((cur + 1) % slides.length), 5500); }));
+    tmr = setInterval(() => goTo((cur + 1) % slides.length), 5500);
+
+    // Brands carousel
+    const partnerBrands = [
+      { name: 'Hikvision', file: 'images/cctv/cctv_brands/cctv_hikvision_logo.png' },
+      { name: 'Dahua', file: 'images/cctv/cctv_brands/cctv_alhua_logo.png' },
+      { name: 'Honeywell', file: 'images/Fire_detection_alarm_system/FDAS_BRANDS/Honeywell_brand.png' },
+      { name: 'Notifier', file: 'images/Fire_detection_alarm_system/FDAS_BRANDS/Notifier_brand.png' },
+      { name: 'ZKTeco', file: 'images/biometrics_brand/zkt_brand.png' },
+      { name: 'Hikvision (Access)', file: 'images/biometrics_brand/hikvision_brand.png' },
+      { name: 'Fanvil', file: 'images/pabx_brand/fanvil_brand.png' },
+      { name: 'Yeastar', file: 'images/pabx_brand/yeastar_brand.png' },
+      { name: 'TP-Link', file: 'images/networking_brand/tplink_brand.png' },
+      { name: 'Reyee', file: 'images/networking_brand/reyee_brand.png' },
+      { name: 'Ubiquiti', file: 'images/networking_brand/ebiquiti_brand.png' },
+      { name: 'Trina Solar', file: 'images/brands/Trinasolar.png' },
+      { name: 'Deye', file: 'images/brands/Deye.png' }
+    ];
+    const brandsTrackHome = document.getElementById('brandsTrackHome');
+
+    function createBrandPill(brand) {
+      const pill = document.createElement('div');
+      pill.className = 'brand-pill';
+      const img = document.createElement('img');
+      img.src = brand.file;
+      img.alt = `${brand.name} logo`;
+      img.loading = 'lazy';
+      pill.appendChild(img);
+      return pill;
+    }
+
+    for (let i = 0; i < 4; i++) {
+      partnerBrands.forEach(brand => brandsTrackHome.appendChild(createBrandPill(brand)));
+    }
+    setTimeout(() => document.querySelectorAll('#hero .rev').forEach(el => el.classList.add('in')), 120);
+  </script>
+</body>
+
+</html>

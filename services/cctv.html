@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Professional CCTV installation Philippines. Hikvision & Dahua 4K IP cameras, night vision, remote viewing. Metro Manila nationwide.">
+  <title>CCTV & Surveillance Systems | JREMD Technologies Philippines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <style>
+    /* FEATURED PRODUCTS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    /* IMAGE — untouched */
+    .product-img-wrap {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    /* TITLE — increase min-height to fit 3-line titles */
+    .product-card h4 {
+      font-family: var(--fd);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+      min-height: 78px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      line-height: 1.3;
+    }
+
+    /* DESCRIPTION — increase min-height to fit 4-line descriptions */
+    .product-card p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+      line-height: 1.5;
+      min-height: 90px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    /* FEATURE LIST — pushes to bottom of card */
+    .product-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      text-align: left;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .product-features li {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 4px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .product-features li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--ocean);
+      font-weight: bold;
+    }
+
+    /* ── GALLERY FILTER BAR ── */
+    .gallery-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      background: var(--frost);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 20px;
+    }
+
+    .gallery-filter-bar label {
+      font-family: var(--fb);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ocean);
+      white-space: nowrap;
+    }
+
+    .gallery-filter-bar select {
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 40px 10px 16px;
+      font-family: var(--fb);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      outline: none;
+      transition: all .25s var(--ease);
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230077B6' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      min-width: 160px;
+    }
+
+    .gallery-filter-bar select:hover {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 3px rgba(0, 119, 182, .08);
+    }
+
+    .gallery-filter-bar select:focus {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 4px rgba(0, 119, 182, .12);
+    }
+
+    .gallery-count {
+      margin-left: auto;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+
+    .gallery-count span {
+      color: var(--ocean);
+      font-weight: 700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .gallery-filter-bar select {
+        width: 100%;
+      }
+
+      .gallery-count {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #brandsTrackCCTV {
+      animation: scrollbrCCTV 40s linear infinite;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    #brandsTrackCCTV:hover {
+      animation-play-state: running;
+    }
+
+    #brandsTrackCCTV .brand-pill {
+      padding: 8px 24px;
+    }
+
+    #brandsTrackCCTV .brand-pill img {
+      max-height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    @keyframes scrollbrCCTV {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body id="page-header">
+
+  <div class="pg-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <a href="../index.html#services">Services</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <span>CCTV & Surveillance Systems</span>
+      </div>
+      <div class="pg-hero-inner">
+        <div class="rev">
+          <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:18px">
+            <div style="width:28px;height:2px;background:var(--amber);border-radius:2px"></div>
+            <span
+              style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ice)">Digital Watch</span>
+          </div>
+          <h1 class="dlg" style="margin-bottom:20px;color:var(--white)">See Every<br><span
+              style='color:var(--amber)'>Detail.</span></h1>
+          <p
+            style="font-size:16px;font-weight:400;color:rgba(255,255,255,.7);line-height:1.75;max-width:480px;margin-bottom:32px">
+            From single-camera homes to multi-site enterprise surveillance — crystal-clear footage around the clock,
+            designed and installed by certified engineers.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="../contact.html" class="btn btn-amber">Inquire with Us</a>
+            <a href="../contact.html" class="btn btn-outline-white">Book Inspection</a>
+          </div>
+        </div>
+        <div class="rev" style="display:flex;justify-content:flex-end">
+          <img src="../images/works/cctv-commercial-1.png" alt="CCTV commercial installation by JREMD Technologies"
+            style="max-width:100%;height:auto;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,.25);display:block;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section" style="background:var(--frost);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div style="margin-bottom:40px" class="rev">
+        <span class="eyb">Key Features</span>
+        <h2 class="dmd">What's Included</h2>
+      </div>
+      <div class="feat-grid rev">
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/camera.svg" alt="4K Ultra HD" width="24"
+              height="24" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>4K Ultra HD Resolution</h4>
+          <p>Capture fine detail — license plates, faces, signage — in full 4K clarity. Perfect for entrances, cashier
+            areas, and parking lots.</p>
+        </div>
+
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/moon.svg" alt="Night Vision" width="24"
+              height="24" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>Smart Night Vision</h4>
+          <p>Infrared and color night vision delivers clear images even in near-zero light — no extra lighting needed.
+          </p>
+        </div>
+
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/smartphone.svg" alt="Remote Viewing"
+              width="24" height="24" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>Remote Live Viewing</h4>
+          <p>Access cameras anytime from your smartphone, tablet, or laptop using Hikvision Hik-Connect or Dahua DMSS
+            apps.</p>
+        </div>
+
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/scan-search.svg"
+              alt="AI Motion Detection" width="24" height="24"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>AI Motion Detection</h4>
+          <p>Smart analytics filter false alarms — only alert you to real events like human intrusion or vehicle entry.
+          </p>
+        </div>
+
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/hard-drive.svg" alt="NVR & Cloud Storage"
+              width="24" height="24" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>NVR & Cloud Storage</h4>
+          <p>Local NVR recording with RAID backup plus optional cloud storage for critical footage archives.</p>
+        </div>
+
+        <div class="feat-cell">
+          <div class="feat-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/wrench.svg"
+              alt="Professional Installation" width="24" height="24"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h4>Professional Installation</h4>
+          <p>Our certified technicians handle everything — cable management, mounting, and configuration with 1-year
+            warranty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS & GALLERY -->
+  <section class="section">
+    <div class="container">
+      <div style="margin-bottom:40px" class="rev">
+        <span class="eyb">Featured Products</span>
+        <h2 class="dmd">Latest Hikvision CCTV Solutions</h2>
+        <p style="font-size:16px;color:var(--gray-500);line-height:1.6;max-width:600px">Discover Hikvision's
+          cutting-edge CCTV technology with AI-powered surveillance, superior imaging, and advanced features for
+          comprehensive security.</p>
+      </div>
+
+      <!-- FEATURED PRODUCTS -->
+      <div class="products-grid rev">
+        <div class="product-card">
+          <div class="product-img-wrap" style="height: 300px;">
+            <img src="../images/cctv/cctv_featured_products/Hikvision NVR AcuSense DS-96xxNXI-I8.png"
+              alt="Hikvision NVR AcuSense DS-96xxNXI-I8">
+          </div>
+          <h4>NVR AcuSense (AI NVR – NXI Series)</h4>
+          <p>Advanced AI-powered NVR with AcuSense 3.0 for superior detection accuracy and smart search capabilities.
+          </p>
+          <ul class="product-features">
+            <li>AcuSense 3.0 AI Technology</li>
+            <li>Enhanced Detection Accuracy</li>
+            <li>Smart Search & Analytics</li>
+            <li>Latest Model: DS-96xxNXI-I8</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap" style="height: 300px;">
+            <img src="../images/cctv/cctv_featured_products/Hikvision DS-2CD6D54G2-IZHS.png"
+              alt="Hikvision Panoramic Camera DS-2CD6D54G2-IZHS">
+          </div>
+          <h4>Panoramic / Pan Cameras</h4>
+          <p>Multi-lens wide-view cameras providing extensive coverage for large areas with seamless stitching.</p>
+          <ul class="product-features">
+            <li>Multi-lens Technology</li>
+            <li>Wide Coverage Area</li>
+            <li>Seamless Image Stitching</li>
+            <li>Latest Model: DS-2CD6D54G2-IZHS</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap" style="height: 300px;">
+            <img src="../images/cctv/cctv_featured_products/Hikvision DS-2CD2387G3-LIS2UY:SL.png"
+              alt="Hikvision ColorVu 3.0 DS-2CD2387G3-LIS2UY/SL">
+          </div>
+          <h4>ColorVu 3.0 Cameras</h4>
+          <p>Newest AI Color series with HikAI-ISP for enhanced full-color imaging in low-light conditions.</p>
+          <ul class="product-features">
+            <li>ColorVu 3.0 Technology</li>
+            <li>HikAI-ISP Processing</li>
+            <li>Full-Color Low-Light Imaging</li>
+            <li>Latest Model: DS-2CD2387G3-LIS2UY/SL</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap" style="height: 300px;">
+            <img src="../images/cctv/cctv_featured_products/DS-2CD23x7G3-LIZS2U.png"
+              alt="Hikvision PTRZ Camera DS-2CD25x7G3-LIZS2UY">
+          </div>
+          <h4>PTRZ Cameras (Motorized 5-axis dome)</h4>
+          <p>Motorization 2.0 PTRZ dome cameras for easy installation and remote adjustment with precise positioning.
+          </p>
+          <ul class="product-features">
+            <li>Motorization 2.0 Technology</li>
+            <li>5-Axis Adjustment</li>
+            <li>Remote Positioning</li>
+            <li>Model: DS-2CD25x7G3-LIZS2UY</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CCTV CAMERA GALLERY -->
+      <div style="margin-top:60px" class="rev">
+        <span class="eyb">Featured Camera Gallery</span>
+        <h2 class="dmd">CCTV Camera Gallery</h2>
+        <p style="font-size:16px;color:var(--gray-500);line-height:1.6;max-width:600px;margin-bottom:32px">Check out our
+          latest CCTV cameras from trusted brands—professionally installed for your convenience.</p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="gallery-filter-bar rev">
+        <label for="galleryBrandFilter">Filter by</label>
+        <select id="galleryBrandFilter" onchange="filterGallery(this.value)">
+          <option value="all">All Brands</option>
+          <option value="hikvision">Hikvision</option>
+          <option value="tapo">TP-Link Tapo</option>
+          <option value="avtech">Avtech</option>
+          <option value="dahua">Dahua</option>
+        </select>
+        <div class="gallery-count">Showing <span id="galleryVisibleCount">11</span> of <span>11</span> cameras</div>
+      </div>
+
+      <div class="products-grid rev" id="cctvGalleryGrid">
+        <!-- Hikvision Hikvision DS-2CD2186G2-IU -->
+        <div class="product-card" data-brand="hikvision">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/Hikvision DS-2CD2186G2-IU.jpeg"
+              alt="Hikvision Hikvision DS-2CD2186G2-IU PTRZ Dome Camera" loading="lazy">
+          </div>
+          <h4>Hikvision DS-2CD2186G2-IU</h4>
+          <p>The Hikvision DS-2CD2186G2-ISU is an 8MP G2 AcuSense dome camera with built-in microphone</p>
+        </div>
+
+        <!-- Hikvision DS-2CD2086G2-I -->
+        <div class="product-card" data-brand="hikvision">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/Hikvision DS-2CD2086G2-I.png"
+              alt="Hikvision DS-2CD2086G2-I AcuSense Bullet Camera" loading="lazy">
+          </div>
+          <h4>DS-2CD2086G2-I</h4>
+          <p>Hikvision 8MP AcuSense fixed bullet camera with deep learning-based detection.</p>
+        </div>
+
+        <!-- TP-Link Tapo C220 -->
+        <div class="product-card" data-brand="tapo">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/Pan:Tilt AI Home Security Wi-Fi Camera Tapo C220.jpg"
+              alt="TP-Link Tapo C220 Pan/Tilt AI Home Security Wi-Fi Camera" loading="lazy">
+          </div>
+          <h4>Tapo C220</h4>
+          <p>TP-Link Pan/Tilt AI home security Wi-Fi camera with person detection.</p>
+        </div>
+
+        <!-- TP-Link Tapo C246D -->
+        <div class="product-card" data-brand="tapo">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/Tapo C246D.png" alt="TP-Link Tapo C246D Outdoor Security Camera"
+              loading="lazy">
+          </div>
+          <h4>Tapo C246D</h4>
+          <p>TP-Link outdoor security camera with full-color night vision and weatherproof design.</p>
+        </div>
+
+        <!-- TP-Link Tapo C460 -->
+        <div class="product-card" data-brand="tapo">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/Tapo C460.jpg" alt="TP-Link Tapo C460 Indoor Security Camera"
+              loading="lazy">
+          </div>
+          <h4>Tapo C460</h4>
+          <p>TP-Link indoor smart security camera with AI detection and two-way audio.</p>
+        </div>
+
+        <!-- Avtech DGM2303SVT -->
+        <div class="product-card" data-brand="avtech">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/avtech_DGM2303SVT.jpg" alt="Avtech DGM2303SVT IP Dome Camera"
+              loading="lazy">
+          </div>
+          <h4>DGM2303SVT</h4>
+          <p>Avtech 3MP IP dome camera with IR night vision and vandal-resistant housing.</p>
+        </div>
+
+        <!-- Avtech DGM2643SVT -->
+        <div class="product-card" data-brand="avtech">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/avtech_DGM2643SVT.jpg" alt="Avtech DGM2643SVT IP Dome Camera"
+              loading="lazy">
+          </div>
+          <h4>DGM2643SVT</h4>
+          <p>Avtech IP dome camera with enhanced low-light performance and smart analytics.</p>
+        </div>
+
+        <!-- Avtech DGM2937SVAT -->
+        <div class="product-card" data-brand="avtech">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/avtech_DGM2937SVAT.jpg" alt="Avtech DGM2937SVAT IP Dome Camera"
+              loading="lazy">
+          </div>
+          <h4>DGM2937SVAT</h4>
+          <p>Avtech dome camera with varifocal lens and smart video analytics support.</p>
+        </div>
+
+        <!-- Avtech DGM8707DGAT -->
+        <div class="product-card" data-brand="avtech">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/avtech_DGM8707DGAT.jpg" alt="Avtech DGM8707DGAT IP Camera"
+              loading="lazy">
+          </div>
+          <h4>DGM8707DGAT</h4>
+          <p>Avtech IP camera with dual-stream encoding and wide dynamic range support.</p>
+        </div>
+
+        <!-- Dahua IPC-HDBW4231F-E2-M/M12 -->
+        <div class="product-card" data-brand="dahua">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/dalhua_IPC-HDBW4231F-E2-M:M12.png"
+              alt="Dahua IPC-HDBW4231F-E2-M/M12 Dome Camera" loading="lazy">
+          </div>
+          <h4>IPC-HDBW4231F-E2-M/M12</h4>
+          <p>Dahua 2MP dome camera with dual-lens design for wide-area surveillance.</p>
+        </div>
+
+        <!-- Dahua IPC-HFW5831E-Z5E -->
+        <div class="product-card" data-brand="dahua">
+          <div class="product-img-wrap" style="height: 200px;">
+            <img src="../images/cctv/cctv_gallery/dalhua_IPC-HFW5831E-Z5E.png"
+              alt="Dahua IPC-HFW5831E-Z5E Bullet Camera" loading="lazy">
+          </div>
+          <h4>IPC-HFW5831E-Z5E</h4>
+          <p>Dahua 8MP ePoE bullet camera with motorized vari-focal lens and smart IR.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <div class="brands-strip">
+    <div class="brands-track" id="brandsTrackCCTV"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Ready for a Free CCTV Quote?</h2>
+        <p>End-to-end site assessment, system design, and personalized proposal.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="../contact.html" class="btn btn-amber btn-lg">Inquire with Us</a>
+        <a href="../contact.html" class="btn btn-outline-white btn-lg">Book Site Survey</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="page-footer"></div>
+  <script src="../shared.js"></script>
+  <script>
+    const cctvBrands = [
+      { name: 'Avtech', file: 'cctv_avtech_logo.png' },
+      { name: 'Hikvision', file: 'cctv_hikvision_logo.png' },
+      { name: 'TP-Link Tapo', file: 'cctv_tapo_logo.png' },
+      { name: 'Dahua', file: 'cctv_alhua_logo.png' }
+    ];
+
+    const brandsTrackCCTV = document.getElementById('brandsTrackCCTV');
+
+    function createBrandPill(brand) {
+      const pill = document.createElement('div');
+      pill.className = 'brand-pill';
+      const img = document.createElement('img');
+      img.src = `../images/cctv/cctv_brands/${brand.file}`;
+      img.alt = `${brand.name} logo`;
+      img.style.maxWidth = '120px';
+      img.style.height = 'auto';
+      pill.appendChild(img);
+      return pill;
+    }
+
+    function populateTrack(times) {
+      for (let i = 0; i < times; i++) {
+        cctvBrands.forEach(brand => {
+          brandsTrackCCTV.appendChild(createBrandPill(brand));
+        });
+      }
+    }
+
+    function ensureLoopLength() {
+      const minWidth = window.innerWidth * 2;
+      while (brandsTrackCCTV.scrollWidth < minWidth) {
+        cctvBrands.forEach(brand => brandsTrackCCTV.appendChild(createBrandPill(brand)));
+      }
+    }
+
+    populateTrack(2);
+    window.addEventListener('load', ensureLoopLength);
+    window.addEventListener('resize', ensureLoopLength);
+
+    // ── GALLERY FILTER ──
+    function filterGallery(brand) {
+      const cards = document.querySelectorAll('#cctvGalleryGrid .product-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardBrand = card.getAttribute('data-brand');
+        if (brand === 'all' || cardBrand === brand) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('galleryVisibleCount').textContent = visibleCount;
+    }
+
+  </script>
+</body>
+
+</html>

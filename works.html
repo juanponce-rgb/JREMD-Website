@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="JREMD Technologies project documentation — CCTV installations, solar panels, PABX systems, LAN cabling, fire alarms, and biometrics onsite works across the Philippines.">
+  <title>Our Works | JREMD Technologies Philippines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* FILTER TABS */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .ftab {
+      padding: 9px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--gray-500);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .ftab:hover {
+      border-color: var(--ocean);
+      color: var(--ocean);
+    }
+
+    .ftab.active {
+      background: var(--ocean);
+      border-color: var(--ocean);
+      color: var(--white);
+    }
+
+    /* WORKS GRID */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* CARD — original shape/shadow/hover, unchanged */
+    .work-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all .25s var(--ease);
+    }
+
+    .work-card:hover {
+      border-color: var(--sky);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    /* ── CARD SLIDER (replaces .work-img) ── */
+    .card-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #d0e8f4;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .card-slider:active {
+      cursor: grabbing;
+    }
+
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform .42s cubic-bezier(.4, 0, .2, 1);
+      will-change: transform;
+    }
+
+    .slider-track.no-transition {
+      transition: none !important;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s cubic-bezier(.4, 0, .2, 1);
+      pointer-events: none;
+    }
+
+    .work-card:hover .slide-img {
+      transform: scale(1.06);
+    }
+
+    /* placeholder — same look as original .work-ph */
+    .slide-ph {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(145deg, #d8eef8 0%, #b8d8ee 100%);
+    }
+
+    .slide-ph .ph-icon {
+      font-size: 42px;
+      opacity: .5;
+    }
+
+    .slide-ph .ph-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sky);
+      opacity: .7;
+    }
+
+    /* badge — same position as original */
+    .work-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+    }
+
+    /* ── minimal arrows (hidden until hover) ── */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      background: rgba(255, 255, 255, .18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity .22s ease, background .2s ease, transform .2s ease;
+      padding: 0;
+    }
+
+    .slider-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .4));
+    }
+
+    .work-card:hover .slider-btn {
+      opacity: 1;
+    }
+
+    .slider-btn.prev {
+      left: 12px;
+    }
+
+    .slider-btn.next {
+      right: 12px;
+    }
+
+    .slider-btn:hover {
+      background: rgba(255, 255, 255, .32);
+    }
+
+    .slider-btn.prev:hover {
+      transform: translateY(-50%) translateX(-2px);
+    }
+
+    .slider-btn.next:hover {
+      transform: translateY(-50%) translateX(2px);
+    }
+
+    /* hide controls on single-image cards */
+    .card-slider[data-count="1"] .slider-btn,
+    .card-slider[data-count="1"] .slider-dots {
+      display: none;
+    }
+
+    /* ── pill dots ── */
+    .slider-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+      align-items: center;
+    }
+
+    .slider-dots .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .45);
+      cursor: pointer;
+      transition: background .2s, width .25s cubic-bezier(.4, 0, .2, 1), border-radius .25s;
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .slider-dots .dot.active {
+      width: 16px;
+      border-radius: 2px;
+      background: #ffffff;
+    }
+
+    /* card body — identical to original */
+    .work-body {
+      padding: 20px;
+    }
+
+    .work-svc {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ocean);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .work-title {
+      font-family: var(--fd);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .work-loc {
+      font-size: 12px;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .work-loc::before {
+      content: '📍';
+      font-size: 10px;
+    }
+
+    /* STATS ROW — works-specific override */
+    .works-stats {
+      margin-bottom: 100px;
+    }
+
+    .collage-section {
+      background: var(--frost);
+      padding: 80px 0;
+    }
+
+    .collage-section .container {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .collage-section .rev {
+      padding-left: 40px;
+    }
+
+    .collage-inner {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .collage-img {
+      width: 100%;
+      max-width: none;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(15, 55, 89, 0.08);
+    }
+
+    @media(max-width:900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .collage-section {
+        padding: 64px 0;
+      }
+    }
+
+    @media(max-width:600px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collage-img {
+        border-radius: 16px;
+      }
+    }
+
+    .pg-hero .container {
+      padding-left: 0 40px;
+    }
+
+    .pg-hero .breadcrumb {
+      padding-left: 0;
+    }
+  </style>
+</head>
+
+<body id="page-header">
+
+  <div class="pg-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <span>Our Works</span>
+      </div>
+      <span class="eyb" style="color:var(--ice)">Project Documentation</span>
+      <h1 class="dlg" style="color:var(--white);margin-bottom:16px">Onsite. Done Right.<br><span
+          style="color:var(--amber)">Every Time.</span></h1>
+      <p style="font-size:17px;color:rgba(255,255,255,.7);line-height:1.75;max-width:520px">Real projects. Real results.
+        Browse our documentation of completed installations across Metro Manila and the Philippines.</p>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="section-sm" style="background:var(--frost);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="works-stats rev">
+        <div class="ws-cell"><span class="ws-num">15+</span><span class="ws-lbl">Years of Experience</span></div>
+        <div class="ws-cell"><span class="ws-num">PH</span><span class="ws-lbl">Nationwide Coverage</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section">
+    <div class="container">
+      <div style="margin-bottom:32px" class="rev">
+        <span class="eyb">Featured Project Gallery</span>
+        <h2 class="dmd">Documented Works</h2>
+      </div>
+
+      <!-- FILTER TABS -->
+      <div class="filter-tabs rev">
+        <button class="ftab active" onclick="filterWorks('all',this)">All Projects</button>
+        <button class="ftab" onclick="filterWorks('cctv',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/camera.svg" alt="" width="15" height="15"
+            style="filter:invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          CCTV
+        </button>
+        <button class="ftab" onclick="filterWorks('solar',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/sun.svg" alt="" width="15" height="15"
+            style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          Solar
+        </button>
+        <button class="ftab" onclick="filterWorks('fire',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/flame.svg" alt="" width="15" height="15"
+            style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          Fire Alarm
+        </button>
+        <button class="ftab" onclick="filterWorks('biometrics',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/fingerprint.svg" alt="" width="15"
+            height="15" style="filter:invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          Biometrics
+        </button>
+        <button class="ftab" onclick="filterWorks('pabx',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/phone-call.svg" alt="" width="15"
+            height="15" style="filter:invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          PABX
+        </button>
+        <button class="ftab" onclick="filterWorks('lan',this)">
+          <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/network.svg" alt="" width="15" height="15"
+            style="filter:invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          LAN
+        </button>
+      </div>
+
+      <!-- WORKS GRID GUIDE -->
+      <!--
+        To add a floating card on the gallery:
+        1. Create a new <div class="work-card floating-card" data-cat="category"> with your content.
+        2. Add CSS for .floating-card { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 90%; max-width: 500px; background: white; border-radius: 14px; overflow: hidden; }
+        3. Optionally, add a close button or click-outside to hide it.
+        4. Use JavaScript to show/hide the floating card, e.g., on button click or image click.
+        5. For the floating card to appear, add an onclick event to a trigger element, like a button or image.
+        Example copy-paste code for a floating card (adjust images and content as needed):
+      -->
+      <!-- Example Floating Card (copy-paste and modify) -->
+      <!--
+        <div class="work-card floating-card" id="floatingCard" style="display:none;" data-cat="cctv">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City1.jpg" alt="8 Cuts Burger MOA CCTV 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City2.jpg" alt="8 Cuts Burger MOA CCTV 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City3.jpg" alt="8 Cuts Burger MOA CCTV 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">8 Cuts Burger — Analog CCTV System</div>
+            <div class="work-loc">SM Mall of Asia, Pasay City</div>
+          </div>
+          <button onclick="document.getElementById('floatingCard').style.display='none';" style="position:absolute;top:10px;right:10px;background:red;color:white;border:none;padding:5px;border-radius:50%;">×</button>
+        </div>
+      -->
+      <div class="works-grid" id="worksGrid">
+
+        <!-- ① 8 Cuts Burger, SM MOA — CCTV Analog -->
+        <div class="work-card rev" data-cat="cctv">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City1.jpg"
+                  alt="8 Cuts Burger MOA CCTV 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City2.jpg"
+                  alt="8 Cuts Burger MOA CCTV 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV Analog System at 8 Cuts Burger, SM Mall of Asia, Pasay City3.jpg"
+                  alt="8 Cuts Burger MOA CCTV 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">8 Cuts Burger — Analog CCTV System</div>
+            <div class="work-loc">SM Mall of Asia, Pasay City</div>
+          </div>
+        </div>
+
+        <!-- ② Bambantarlac — CCTV -->
+        <div class="work-card rev" data-cat="cctv">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_BAMBANTARLAC.jpg"
+                  alt="Bambantarlac CCTV 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_BAMBANTARLAC2.jpg"
+                  alt="Bambantarlac CCTV 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_BAMBANTARLAC3.jpg"
+                  alt="Bambantarlac CCTV 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">CCTV Installation — Bamban, Tarlac</div>
+            <div class="work-loc">Bamban, Tarlac</div>
+          </div>
+        </div>
+
+        <!-- ③ Golden Sky Warehouse Divisoria — CCTV -->
+        <div class="work-card rev" data-cat="cctv">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_GOLDENSKYWAREHOUSE-DIVISORIA1.jpg" alt="Golden Sky Warehouse CCTV 1">
+              </div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_GOLDENSKYWAREHOUSE-DIVISORIA2.jpg" alt="Golden Sky Warehouse CCTV 2">
+              </div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_GOLDENSKYWAREHOUSE-DIVISORIA3.jpg" alt="Golden Sky Warehouse CCTV 3">
+              </div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">Golden Sky Warehouse — CCTV</div>
+            <div class="work-loc">Divisoria, Manila</div>
+          </div>
+        </div>
+
+        <!-- ④ Home Service — CCTV -->
+        <div class="work-card rev" data-cat="cctv">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_HOME SERVICE1.jpg"
+                  alt="Home Service CCTV 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_HOME SERVICE2.jpg"
+                  alt="Home Service CCTV 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy" src="images/works_gallery/CCTV_HOME SERVICE3.jpg"
+                  alt="Home Service CCTV 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">Residential — Home CCTV Service</div>
+            <div class="work-loc">Metro Manila</div>
+          </div>
+        </div>
+
+        <!-- ⑤ Singko Mart Navotas — SOLAR -->
+        <div class="work-card rev" data-cat="solar">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_Singko Mart, Navotas2.jpg" alt="Singko Mart Navotas SOLAR 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_Singko Mart, Navotas3.jpg" alt="Singko Mart Navotas SOLAR 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV_Singko Mart, Navotas1.jpg" alt="Singko Mart Navotas SOLAR 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">SOLAR</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Surveillance</span>
+            <div class="work-title">Singko Mart — CCTV System</div>
+            <div class="work-loc">Navotas, Metro Manila</div>
+          </div>
+        </div>
+
+        <!-- ⑥ Residential — CCTV, IP Digital PBX & FDAS -->
+        <div class="work-card rev" data-cat="cctv pabx fire">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, IP Digital PBX System, and FDAS_RESIDENTIAL1.jpg"
+                  alt="Residential CCTV PBX FDAS 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, IP Digital PBX System, and FDAS_RESIDENTIAL2.jpg"
+                  alt="Residential CCTV PBX FDAS 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, IP Digital PBX System, and FDAS_RESIDENTIAL3.jpg"
+                  alt="Residential CCTV PBX FDAS 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">Multi-System</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV · PABX · Fire Alarm</span>
+            <div class="work-title">Residential — CCTV, IP-PBX & FDAS</div>
+            <div class="work-loc">Philippines</div>
+          </div>
+        </div>
+
+        <!-- ⑦ Din Tai Fung SM Clark — CCTV, Phone & Data -->
+        <div class="work-card rev" data-cat="cctv lan pabx">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, Phone & Data_DINTAIFUNG_SMCLARK1.jpg" alt="Din Tai Fung Clark 1">
+              </div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, Phone & Data_DINTAIFUNG_SMCLARK2.jpg" alt="Din Tai Fung Clark 2">
+              </div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV, Phone & Data_DINTAIFUNG_SMCLARK3.jpg" alt="Din Tai Fung Clark 3">
+              </div>
+            </div>
+            <div class="work-badge"><span class="tag">Multi-System</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV · Phone · Data Cabling</span>
+            <div class="work-title">Din Tai Fung — CCTV, Phone & Data</div>
+            <div class="work-loc">SM Clark, Pampanga</div>
+          </div>
+        </div>
+
+        <!-- ⑧ CCTV & Biometrics DTF -->
+        <div class="work-card rev" data-cat="cctv biometrics">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV&BIOMETRICS_DTF1.jpg" alt="CCTV Biometrics DTF 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV&BIOMETRICS_DTF2.jpg" alt="CCTV Biometrics DTF 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/CCTV&BIOMETRICS_DTF3.jpg" alt="CCTV Biometrics DTF 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">CCTV + Biometrics</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">CCTV & Biometrics</span>
+            <div class="work-title">DTF — CCTV & Biometrics System</div>
+            <div class="work-loc">Philippines</div>
+          </div>
+        </div>
+
+        <!-- ⑨ Chowking Antipolo — FDAS -->
+        <div class="work-card rev" data-cat="fire">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_CHOWKING ANTIPOLO1.jpg" alt="Chowking Antipolo FDAS 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_CHOWKING ANTIPOLO2.jpg" alt="Chowking Antipolo FDAS 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_CHOWKING ANTIPOLO3.jpg" alt="Chowking Antipolo FDAS 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag" style="background:var(--sky);color:var(--navy)">Fire Alarm</span>
+            </div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">Fire Detection & Alarm</span>
+            <div class="work-title"> Fire Alarm System (FDAS)</div>
+            <div class="work-loc">Antipolo, Rizal</div>
+          </div>
+        </div>
+
+        <!-- ⑩ Jollibee Legarda — FDAS -->
+        <div class="work-card rev" data-cat="fire">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_JOLLIBEELEGARDA1.jpg" alt="Jollibee Elegarda FDAS 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_JOLLIBEELEGARDA2.jpg" alt="Jollibee Elegarda FDAS 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/FDAS_JOLLIBEELEGARDA3.jpg" alt="Jollibee Elegarda FDAS 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag" style="background:var(--sky);color:var(--navy)">Fire Alarm</span>
+            </div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">Fire Detection & Alarm</span>
+            <div class="work-title">FDAS Installation</div>
+            <div class="work-loc">Legarda, Manila</div>
+          </div>
+        </div>
+
+        <!-- ⑪ Wawa Jvco Tayabasan — Solar -->
+        <div class="work-card rev" data-cat="solar">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/SOLAR_Wawa Jvco Tayabasan1.jpg" alt="Wawa Jvco Solar 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/SOLAR_Wawa Jvco Tayabasan2.jpg" alt="Wawa Jvco Solar 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/SOLAR_Wawa Jvco Tayabasan3.jpg" alt="Wawa Jvco Solar 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag tag-amber">Solar</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">Solar Energy System</span>
+            <div class="work-title">Wawa Jvco — Solar Panel Installation</div>
+            <div class="work-loc">Tayabasan, Philippines</div>
+          </div>
+        </div>
+
+        <!-- ⑫ ZKTeco Biometrics & Magnetic Door Lock — Din Tai Fung -->
+        <div class="work-card rev" data-cat="biometrics">
+          <div class="card-slider" data-count="3">
+            <div class="slider-track">
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/ZKTeco Biometrics and Magnetic Door Lock System_DIN TAI FUNG.jpg"
+                  alt="ZKTeco Din Tai Fung 1"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/ZKTeco Biometrics and Magnetic Door Lock System2.jpg" alt="ZKTeco 2"></div>
+              <div class="slide"><img class="slide-img" loading="lazy"
+                  src="images/works_gallery/ZKTeco Biometrics and Magnetic Door Lock System3.jpg" alt="ZKTeco 3"></div>
+            </div>
+            <div class="work-badge"><span class="tag">Biometrics</span></div>
+            <button class="slider-btn prev" aria-label="Previous slide"><svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg></button>
+            <button class="slider-btn next" aria-label="Next slide"><svg viewBox="0 0 24 24">
+                <polyline points="9 6 15 12 9 18" />
+              </svg></button>
+            <div class="slider-dots"></div>
+          </div>
+          <div class="work-body">
+            <span class="work-svc">Biometrics & Access Control</span>
+            <div class="work-title">Din Tai Fung — ZKTeco Biometrics & Magnetic Lock</div>
+            <div class="work-loc">Philippines</div>
+          </div>
+        </div>
+
+      </div><!-- /works-grid -->
+    </div>
+  </section>
+
+  <!-- COLLAGE -->
+  <section class="section collage-section">
+    <div class="container">
+      <div style="margin-bottom:15px" class="rev">
+        
+        <h2 class="dmd">Visual Summary of Our Works</h2>
+      </div>
+      <div class="collage-inner">
+        <img class="collage-img" loading="lazy" src="images/jremd collage.png" alt="JREMD collage overview">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Want Your Project<br>Done Like These?</h2>
+
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-amber btn-lg">Get in Touch</a>
+        <a href="services/cctv.html" class="btn btn-outline-white btn-lg">Browse Services</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    /* ── FILTER (original logic, unchanged) ── */
+    function filterWorks(cat, btn) {
+      document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.work-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat.split(' ').includes(cat)) {
+          card.style.display = '';
+          setTimeout(() => card.classList.add('in'), 50);
+        } else {
+          card.style.display = 'none';
+          card.classList.remove('in');
+        }
+      });
+    }
+
+    /* ── CAROUSEL ENGINE ── */
+    document.querySelectorAll('.card-slider').forEach(slider => {
+      const track = slider.querySelector('.slider-track');
+      const dotsWrap = slider.querySelector('.slider-dots');
+      const total = parseInt(slider.dataset.count, 10);
+      let current = 0, startX = 0, isDragging = false, dragDelta = 0;
+
+      if (total <= 1) return;
+
+      /* build dots */
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      }
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        track.classList.remove('no-transition');
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsWrap.querySelectorAll('.dot').forEach((d, i) =>
+          d.classList.toggle('active', i === current));
+      }
+
+      slider.querySelector('.slider-btn.prev')
+        .addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); });
+      slider.querySelector('.slider-btn.next')
+        .addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); });
+
+      /* drag / swipe */
+      function onStart(x) { startX = x; isDragging = true; dragDelta = 0; track.classList.add('no-transition'); }
+      function onMove(x) { if (!isDragging) return; dragDelta = x - startX; track.style.transform = 'translateX(calc(-' + (current * 100) + '% + ' + dragDelta + 'px))'; }
+      function onEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        if (dragDelta < -50) goTo(current + 1);
+        else if (dragDelta > 50) goTo(current - 1);
+        else goTo(current);
+      }
+
+      slider.addEventListener('mousedown', e => onStart(e.clientX));
+      window.addEventListener('mousemove', e => { if (isDragging) { e.preventDefault(); onMove(e.clientX); } }, { passive: false });
+      window.addEventListener('mouseup', () => onEnd());
+      slider.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
+      slider.addEventListener('touchmove', e => onMove(e.touches[0].clientX), { passive: true });
+      slider.addEventListener('touchend', () => onEnd());
+    });
+
+    /* image fallback for any failed loads */
+    document.querySelectorAll('.slide-img').forEach(img => {
+      img.addEventListener('error', () => {
+        const slide = img.closest('.slide');
+        if (!slide) return;
+        slide.innerHTML = '<div class="slide-ph"><span class="ph-icon">⚠️</span><span class="ph-label">Image unavailable</span></div>';
+      });
+    });
+  </script>
+</body>
+
+</html>

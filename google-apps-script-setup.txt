@@ -1,0 +1,113 @@
+===========================================================
+  GOOGLE APPS SCRIPT SETUP INSTRUCTIONS
+  For: JREMD Technologies Contact Form → Google Sheets
+===========================================================
+
+STEP 1: Open your Google Sheet
+   Go to: https://docs.google.com/spreadsheets/d/1uNnO_eZPXVYPKxvdzAjEFyhQIHeBagQBdhbMKUj_Skk/edit
+
+STEP 2: Verify Headers in Row 4
+   Your headers should already be in Row 4:
+   A4: ID
+   B4: DATE SUBMITTED
+   C4: TIME SUBMITTED
+   D4: FIRST NAME
+   E4: LAST NAME
+   F4: EMAIL ADDRESS
+   G4: PHONE/MOBILE
+   H4: COMPANY
+   I4: SERVICE NEEDED
+   J4: PROPERTY TYPE
+   K4: MESSAGE/DETAILS
+
+STEP 3: Open Apps Script
+   - Click "Extensions" menu → "Apps Script"
+   - This opens a new tab with the script editor
+
+STEP 4: Replace the default code with this:
+──────────────────────────────────────────────
+
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.openById("1uNnO_eZPXVYPKxvdzAjEFyhQIHeBagQBdhbMKUj_Skk").getSheetByName("Sheet1");
+    
+    // The form sends data via a hidden iframe with form-encoded POST.
+    // The JSON payload is in the "payload" parameter.
+    var data;
+    if (e.parameter && e.parameter.payload) {
+      // Hidden iframe form submission (form-encoded: key=payload, value=JSON)
+      data = JSON.parse(e.parameter.payload);
+    } else if (e.postData && e.postData.contents) {
+      // Direct JSON POST (e.g., from fetch with Content-Type: application/json)
+      data = JSON.parse(e.postData.contents);
+    } else {
+      throw new Error("No valid data received");
+    }
+    
+    // Get the last row to calculate the next ID
+    var lastRow = sheet.getLastRow();
+    var nextId = 1;
+    if (lastRow >= 5) {
+      // Data starts at row 5 (row 4 is headers)
+      var lastId = sheet.getRange(lastRow, 1).getValue();
+      nextId = (parseInt(lastId) || 0) + 1;
+    }
+    
+    // Format date and time separately (Philippine Time, UTC+8)
+    var dateStr = Utilities.formatDate(new Date(), "Asia/Manila", "MM/dd/yyyy");
+    var timeStr = Utilities.formatDate(new Date(), "Asia/Manila", "hh:mm:ss a");
+    
+    sheet.appendRow([
+      nextId,
+      dateStr,
+      timeStr,
+      data.firstName || "",
+      data.lastName || "",
+      data.email || "",
+      data.phone || "",
+      data.company || "",
+      data.service || "",
+      data.propertyType || "",
+      data.message || ""
+    ]);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: "success", id: nextId }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: "error", error: error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+──────────────────────────────────────────────
+
+STEP 5: Deploy as a Web App
+   a) Click the "Deploy" button (top right) → "New deployment"
+   b) Click the gear icon ⚙️ next to "Select type" → choose "Web app"
+   c) Set the following:
+      - Description: "JREMD Contact Form"
+      - Execute as: "Me" (your email)
+      - Who has access: "Anyone"
+   d) Click "Deploy"
+   e) Click "Authorize access" → Choose your Google account → Allow permissions
+   f) COPY the Web App URL that appears (it looks like:
+      https://script.google.com/macros/s/XXXXXXXXX/exec)
+
+STEP 6: The URL is already set in contact.html
+   Current URL: https://script.google.com/macros/s/AKfycbxoTwu44_cRbUF2c1xrXc0A-Ol4tQgcDHcpzAnD1dbBb_Cj75N-ZGegq6o3FDPR97Zk/exec
+
+DONE! Your form will now send data to your Google Sheet.
+
+===========================================================
+  NOTES:
+  - Data starts at row 5 (row 4 has headers, rows 1-3 may have titles)
+  - ID auto-increments starting from 1
+  - Date/Time uses Philippine timezone (Asia/Manila, UTC+8)
+  - If you rename "Sheet1", update the script's getSheetByName() too
+  - To redeploy after changes: Deploy → Manage deployments → Edit → New version
+  - The script runs under YOUR account, so only you need to authorize
+  - The form uses iframe submission which handles Google's 302 redirect natively
+===========================================================

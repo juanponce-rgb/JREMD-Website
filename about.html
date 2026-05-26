@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="About JREMD Technologies Inc. — Licensed electrical engineers, SEC registered, serving the Philippines since 2010. Cubao QC.">
+  <title>About Us | JREMD Technologies Philippines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .cred-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .cred-row {
+      background: var(--white);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background .15s;
+    }
+
+    .cred-row:hover {
+      background: var(--frost);
+    }
+
+    .cred-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ocean);
+      flex-shrink: 0;
+    }
+
+    .cred-row span {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    .val-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .val-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: all .22s var(--ease);
+    }
+
+    .val-card:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .val-card:hover .val-iw {
+      background: var(--ocean);
+    }
+
+    .val-iw {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      transition: background .22s;
+    }
+
+    .val-card h3 {
+      font-family: var(--fd);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .val-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tl-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tl-row:last-child {
+      border-bottom: none;
+    }
+
+    .tl-year {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ocean);
+      width: 64px;
+      flex-shrink: 0;
+    }
+
+    .tl-content h4 {
+      font-family: var(--fd);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .tl-content p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .coverage-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: border-color .2s;
+    }
+
+    .coverage-item:hover {
+      border-color: var(--ocean);
+    }
+
+    .coverage-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ocean);
+      flex-shrink: 0;
+    }
+
+    .coverage-item span {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    /* MISSION and VISION */
+    .mv-section { background: var(--white); border-bottom: 1px solid var(--border); }
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .mv-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 44px 36px 40px;
+      overflow: hidden;
+      transition: all .3s var(--ease);
+    }
+    .mv-card:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 16px 16px 0 0;
+    }
+    .mv-card.mission::before {
+      background: linear-gradient(90deg, var(--ocean), var(--sky));
+    }
+    .mv-card.vision::before {
+      background: linear-gradient(90deg, var(--amber), #FF9500);
+    }
+    .mv-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      font-size: 26px;
+      margin-bottom: 24px;
+      transition: all .3s var(--ease);
+    }
+    .mv-card.mission .mv-icon-wrap {
+      background: linear-gradient(135deg, rgba(0,119,182,.1), rgba(0,180,216,.15));
+      border: 1px solid rgba(0,180,216,.2);
+    }
+    .mv-card.mission:hover .mv-icon-wrap {
+      background: linear-gradient(135deg, var(--ocean), var(--sky));
+      border-color: var(--ocean);
+    }
+    .mv-card.vision .mv-icon-wrap {
+      background: linear-gradient(135deg, rgba(255,183,3,.12), rgba(255,149,0,.15));
+      border: 1px solid rgba(255,183,3,.25);
+    }
+    .mv-card.vision:hover .mv-icon-wrap {
+      background: linear-gradient(135deg, var(--amber), #FF9500);
+      border-color: var(--amber);
+    }
+    .mv-card .mv-label {
+      font-family: var(--fb);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .mv-card.mission .mv-label { color: var(--ocean); }
+    .mv-card.vision .mv-label { color: var(--amber-dk); }
+    .mv-card h3 {
+      font-family: var(--fd);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    .mv-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .mv-card p:last-of-type { margin-bottom: 0; }
+    .mv-card .mv-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray-600);
+    }
+    .mv-card.mission .mv-highlight {
+      background: rgba(0,180,216,.06);
+      border: 1px solid rgba(0,180,216,.12);
+    }
+    .mv-card.vision .mv-highlight {
+      background: rgba(255,183,3,.06);
+      border: 1px solid rgba(255,183,3,.15);
+    }
+    .mv-highlight-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .mv-quote {
+      position: absolute;
+      bottom: 16px;
+      right: 24px;
+      font-family: var(--fd);
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1;
+      opacity: .04;
+      pointer-events: none;
+      user-select: none;
+    }
+    .mv-card.mission .mv-quote { color: var(--ocean); }
+    .mv-card.vision .mv-quote { color: var(--amber); }
+
+    @media(max-width:1024px) {
+      .about-split {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .val-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:600px) {
+      .val-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mv-card {
+        padding: 32px 24px 28px;
+      }
+    }
+  </style>
+</head>
+
+<body id="page-header">
+  <div class="pg-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg><span>About Us</span></div>
+      <span class="eyb" style="color:var(--ice)">About JREMD Technologies</span>
+      <h1 class="dlg" style="color:var(--white);margin-bottom:16px">Built on Trust<br>&amp; <span
+          style="color:var(--amber)">Expertise.</span></h1>
+      <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:520px;line-height:1.75">Over a decade delivering
+        professional security, communication, and solar energy solutions — backed by licensed engineers and a commitment
+        to lasting quality.</p>
+    </div>
+  </div>
+
+  <!-- WHO WE ARE -->
+  <section class="section" style="border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="about-split rev">
+        <div>
+          <span class="eyb">Who We Are</span>
+          <hr class="rule-ocean">
+          <p class="blg" style="margin-bottom:20px">JREMD Technologies Inc. is a Filipino-owned company dedicated to
+            providing high-quality services and cost-effective equipment for both commercial establishments and
+            residential use, with the goal of enhancing safety and security.</p>
+          <p class="bmd" style="margin-bottom:20px">The company specializes in the supply and customized installation of
+            CCTV surveillance systems and, over the past three years, has expanded into solar power
+            solutions—continuously innovating to meet the specific needs of its clients.</p>
+          <p class="bmd" style="margin-bottom:20px">In addition, JREMD Technologies offers installation services for
+            fire alarm systems, LAN structured cabling, and PABX telephone systems, catering to both small and large
+            businesses as well as residential clients.</p>
+          <p class="bmd" style="margin-bottom:32px">The company has also broadened its expertise to include electrical
+            installations and maintenance. Guided by a strong commitment to excellence, JREMD Technologies strives to
+            meet and exceed client expectations by delivering outstanding customer service, promptly addressing
+            concerns, and providing continuous functional and technical support through efficient operations.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="contact.html" class="btn btn-primary">Work With Us</a>
+            <a href="clients.html" class="btn-ghost">See Our Clients →</a>
+          </div>
+        </div>
+        <div>
+          <span class="eyb">Our Journey</span>
+          <h2 class="dmd" style="margin-bottom:36px">Founded in 2009</h2>
+          <p class="bmd" style="margin-bottom:16px">JREMD Technologies, Inc. was founded in 2009 as JREMD Electronics
+            Enterprise in
+            Cubao, Quezon City. In 2023, we officially transitioned and rebranded as JREMD Technologies, Inc., marking a
+            new chapter in our growth.</p>
+          <p class="bmd" style="margin-bottom:20px">Today, we stand as a trusted full-service systems integrator,
+            delivering innovative security, solar, and
+            communication solutions to homes and businesses across the Philippines. With over a decade of experience, we
+            continue to empower our clients by building safer, smarter, and more sustainable environments.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section" style="background:var(--frost);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:10px;padding-top:40px" class="rev">
+        <span class="eyb">Our Values</span>
+        <h2 class="dmd">What Drives Us</h2>
+      </div>
+      <div class="val-grid rev">
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/shield-check.svg" alt="Reliability First"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Reliability First</h3>
+          <p>Every system we install must work when it matters most — under power fluctuations, extreme heat, and
+            continuous 24/7 operation.</p>
+        </div>
+
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/microscope.svg" alt="Technical Precision"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Technical Precision</h3>
+          <p>Site surveys, load calculations, and system simulations ensure every installation is engineered correctly
+            from the start.</p>
+        </div>
+
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/handshake.svg"
+              alt="Long-Term Partnership" width="32" height="32"
+              style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Long-Term Partnership</h3>
+          <p>Our relationship doesn't end at installation. Annual maintenance and emergency support keep your investment
+            protected.</p>
+        </div>
+
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/book-open.svg" alt="Continuous Learning"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Continuous Learning</h3>
+          <p>Our team undergoes regular training and certification on the latest systems, standards, and installation
+            techniques.</p>
+        </div>
+
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/leaf.svg" alt="Sustainability" width="32"
+              height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Sustainability</h3>
+          <p>Solar energy helps Philippine businesses reduce their carbon footprint and energy costs simultaneously.</p>
+        </div>
+
+        <div class="val-card">
+          <div class="val-iw">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/message-circle.svg" alt="Transparency"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Transparency</h3>
+          <p>Clear proposals, honest timelines, and no hidden charges. You'll always know exactly what you're getting
+            and what it costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION AND VISION -->
+  <section class="section mv-section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:52px" class="rev">
+        <h2 class="dmd">Mission &amp; Vision</h2>
+        <p class="bmd" style="max-width:560px;margin:16px auto 0">Our mission and vision define everything we do — from the systems we design to the partnerships we build.</p>
+      </div>
+      <div class="mv-grid rev">
+        <div class="mv-card mission">
+          <div class="mv-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/compass.svg" alt="Mission" width="28" height="28" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <span class="mv-label">Our Mission</span>
+          <h3>To provide dependable and innovative system solutions that meet client needs and establish our company as a trusted industry leader.</h3>
+         
+          <div class="mv-quote">&#8220;</div>
+        </div>
+        <div class="mv-card vision">
+          <div class="mv-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/telescope.svg" alt="Vision" width="28" height="28" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <span class="mv-label">Our Vision</span>
+          <h3>To be the most trusted partner in delivering mission-critical systems solutions.</h3>
+          <div class="mv-quote">&#8220;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Let's Build Something That Lasts.</h2>
+
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-amber btn-lg">Inquire with Us</a>
+        <a href="clients.html" class="btn btn-outline-white btn-lg">See Our Clients</a>
+      </div>
+    </div>
+  </div>
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="JREMD Technologies clients — Goldilocks, Din Tai Fung, Mamou, Max’s, Meycauayan Doctors Hospital and hundreds more businesses across the Philippines.">
+  <title>Our Clients | JREMD Technologies Philippines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* CLIENT LOGO CARDS */
+    .cli-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cli-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      transition: all .22s var(--ease);
+    }
+
+    .cli-card:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .cli-logo-wrap {
+      width: 100%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cli-logo-wrap img {
+      max-height: 60px;
+      max-width: 140px;
+      object-fit: contain;
+    }
+
+    .cli-abbr {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      background: var(--frost);
+      border: 1.5px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-family: var(--fd);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ocean);
+      transition: all .2s;
+    }
+
+    .cli-card:hover .cli-abbr {
+      background: var(--ocean);
+      color: var(--white);
+      border-color: var(--ocean);
+    }
+
+    .cli-name {
+      font-family: var(--fd);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .cli-type {
+      font-size: 11px;
+      color: var(--gray-400);
+      letter-spacing: .5px;
+    }
+
+    .cli-svc {
+      font-size: 11px;
+      color: var(--ocean);
+      font-weight: 600;
+    }
+
+    /* SECTOR CARDS */
+    .sect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .sect-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px 28px;
+      transition: all .22s var(--ease);
+    }
+
+    .sect-card:hover {
+      border-color: var(--ocean);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .sect-card:hover .sect-icon-wrap {
+      background: var(--ocean);
+    }
+
+    .sect-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--frost);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+      transition: background .22s;
+    }
+
+    .sect-card h3 {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .sect-card p {
+      font-size: 13px;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* NUMBERS */
+    .num-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .num-cell {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .nbig {
+      font-family: var(--fd);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--ocean);
+      display: block;
+      line-height: 1;
+    }
+
+    .nlbl {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 6px;
+      display: block;
+      font-weight: 500;
+      letter-spacing: .5px;
+    }
+
+    @media(max-width:1024px) {
+      .cli-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sect-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .num-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:600px) {
+      .cli-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body id="page-header">
+  <div class="pg-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.2" />
+        </svg><span>Our Clients</span></div>
+      <span class="eyb" style="color:var(--ice)">Client Portfolio</span>
+      <h1 class="dlg" style="color:var(--white);margin-bottom:16px">Trusted by the<br>Philippines' <span
+          style="color:var(--amber)">Best.</span></h1>
+      <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:520px;line-height:1.75">Successful installations
+        across restaurants, hospitals, hotels, schools, and commercial buildings — built on trust and professional
+        service.
+      </p>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <section class="section-sm" style="background:var(--frost);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="works-stats rev">
+        <div class="ws-cell"><span class="ws-num">8+</span><span class="ws-lbl">Industry Sectors</span></div>
+        <div class="ws-cell"><span class="ws-num">15+</span><span class="ws-lbl">Years in Service</span></div>
+        <div class="ws-cell"><span class="ws-num">PH</span><span class="ws-lbl">Nationwide Coverage</span></div>
+      </div>
+    </div>
+  </section>
+  <!-- FEATURED CLIENTS -->
+  <section class="section" style="padding-top:48px">
+    <div class="container">
+      <div style="margin-bottom:40px" class="rev">
+        <span class="eyb">Featured Clients</span>
+        <h2 class="dmd">Industry Leaders<br>Who Trust JREMD</h2>
+      </div>
+      <div class="cli-grid rev">
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/goldilocks/goldilocks-icon.png" alt="Goldilocks">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/vision-express/vision-express-icon.png" alt="Vision Express">
+          </div>
+          <div class="cli-type">Retail</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/boudica-cafe-bar/boudica-cafe-bar-icon.png" alt="Boudica Cafe Bar">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/ramen-nagi/ramen-nagi-icon.png" alt="Ramen Nagi">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/ooma/ooma-icon.png" alt="OOMA">
+          </div>
+          <div class="cli-type">Commercial</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/mamou/mamou-icon.png" alt="Mamou">
+          </div>
+          <div class="cli-type">Restaurant Chain</div>
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/8-cuts-burger/8-cuts-burger-icon.png" alt="8 Cuts Burger">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/din-tai-fung/din-tai-fung-icon.png" alt="Din Tai Fung">
+          </div>
+          <div class="cli-type">Dining & Hospitality</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/maxs/maxs-icon.png" alt="Max’s">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/pepper-lunch/pepper-lunch-icon.png" alt="Pepper Lunch">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/manam/manam-icon.png" alt="Manam">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/mo-cookies/mo-cookies-icon.png" alt="Mo Cookies">
+          </div>
+          <div class="cli-type">Food & Beverage</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/meycauayan-doctors-hospital/meycauayan-doctors-hospital-icon.png"
+              alt="Meycauayan Doctors Hospital">
+          </div>
+          <div class="cli-type">Healthcare</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/pga/pga-icon.png" alt="PGACars" style="max-height:80px; max-width:180px;">
+          </div>
+          <div class="cli-type">Automotive</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/toyota-material-handling/toyota-material-handling-icon.jpeg"
+              alt="Toyota Material Handling">
+          </div>
+          <div class="cli-type">Industrial</div>
+
+        </div>
+
+        <div class="cli-card">
+          <div class="cli-logo-wrap">
+            <img src="images/clients/quality-choices/quality-choices-icon.jpg" alt="Quality Choices">
+          </div>
+          <div class="cli-type">Commercial</div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORS -->
+  <section class="section" style="background:var(--frost);border-top:1px solid var(--border)">
+    <div class="container">
+      <div style="margin-bottom:40px" class="rev">
+        <span class="eyb">Industries We Serve</span>
+        <h2 class="dmd">Built for Every Sector</h2>
+      </div>
+      <div class="sect-grid rev">
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/utensils.svg" alt="Food & Beverage"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Food & Beverage</h3>
+          <p>Restaurant chains, cloud kitchens, food courts — CCTV for loss prevention, fire alarm for kitchen safety,
+            PABX for operations.</p>
+        </div>
+
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/heart-pulse.svg" alt="Healthcare"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Healthcare</h3>
+          <p>Hospitals, clinics, and medical centers — PABX nurse call, access control for secure areas, fire alarm, and
+            surveillance.</p>
+        </div>
+
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/bed-double.svg" alt="Hospitality"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Hospitality</h3>
+          <p>Hotels and resorts — integrated PABX for rooms, CCTV for public areas, access control for staff and guest
+            zones.</p>
+        </div>
+
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/graduation-cap.svg" alt="Education"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Education</h3>
+          <p>Schools and universities — campus-wide CCTV, biometric attendance, PA systems, and structured LAN
+            infrastructure.</p>
+        </div>
+
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/factory.svg" alt="Industrial" width="32"
+              height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Industrial</h3>
+          <p>Warehouses and factories — perimeter alarm, solar power, CCTV, and access control for large-scale
+            facilities.</p>
+        </div>
+
+        <div class="sect-card">
+          <div class="sect-icon-wrap">
+            <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/icons/building-2.svg" alt="Commercial"
+              width="32" height="32" style="filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(190deg);">
+          </div>
+          <h3>Commercial</h3>
+          <p>Office buildings and commercial centers — full-stack technology from solar to structured cabling,
+            surveillance, and communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Join Our Growing List of Clients</h2>
+      </div>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-amber btn-lg">Inquire with Us</a>
+        <a href="works.html" class="btn btn-outline-white btn-lg">See Our Works</a>
+      </div>
+    </div>
+  </div>
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+</body>
+
+</html>
